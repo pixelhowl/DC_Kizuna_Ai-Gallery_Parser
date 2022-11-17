@@ -177,7 +177,7 @@ class contentCounter():
 
     def tagging_with_timeline(self, df, time_cond, word_file_name, timeline):
         time_cond_df = df[time_cond]
-        lines = time_cond_df[u'제목'] + '\n' + time_cond_df['content']
+        lines = time_cond_df[u'제목내용']
         lines = lines.dropna().tolist()
 
         for line in lines:
