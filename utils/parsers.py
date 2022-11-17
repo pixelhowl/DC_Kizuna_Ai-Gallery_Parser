@@ -265,7 +265,7 @@ class contentCounter():
 
         tags_dict = self.get_total_word_dict()
         tags_df = pd.DataFrame(tags_dict.items(), columns=["단어", "언급 수"])
-        tags_df["단어"] = tags_df[~tags_df["단어"].isin(WORD_FILTER)]
+        tags_df = tags_df[~tags_df["단어"].isin(WORD_FILTER)]
         tags_df.sort_values(by=['언급 수'], ascending=False, inplace=True)
         result = tags_df.reset_index(drop=True)
         result.index = result.index + 1
