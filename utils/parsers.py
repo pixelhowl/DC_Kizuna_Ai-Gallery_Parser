@@ -160,9 +160,6 @@ class contentCounter():
         count_list = list(count)
 
         for word in count_list:
-            if word in WORD_FILTER:
-                del count[word]
-                break
             if not word in self.one_word_filter and len(word) == 1:
                 del count[word]
 
@@ -225,8 +222,9 @@ class contentCounter():
 
     def run(self):
         content_df = database.get_content_df()
-        content_df[u'날짜'] = pd.to_datetime(content_df[u'날짜'],format='%Y.%m.%d')
-        
+        content_df[u'날짜'] = pd.to_datetime(content_df[u'날짜'],
+                                           format='%Y.%m.%d')
+
         first_timeline = f'{CUR_YEAR}-{CUR_MONTH}'
         last_timeline = f'{CUR_YEAR}-{CUR_MONTH+1}' if CUR_MONTH != 12 else f'{CUR_YEAR+1}-1'
 
@@ -239,7 +237,8 @@ class contentCounter():
             afternoon_time = cur_timeline + datetime.timedelta(hours=12)
             night_time = cur_timeline + datetime.timedelta(hours=24)
 
-            day_to_night_cond = (content_df[u'날짜'] >= day_time) & (content_df[u'날짜'] < night_time)
+            day_to_night_cond = (content_df[u'날짜'] >=
+                                 day_time) & (content_df[u'날짜'] < night_time)
 
             time_cond_df = content_df[day_to_night_cond]
 
@@ -266,6 +265,7 @@ class contentCounter():
 
         tags_dict = self.get_total_word_dict()
         tags_df = pd.DataFrame(tags_dict.items(), columns=["단어", "언급 수"])
+        tags_df["단어"] = tags_df[~tags_df["단어"].isin(WORD_FILTER)]
         tags_df.sort_values(by=['언급 수'], ascending=False, inplace=True)
         result = tags_df.reset_index(drop=True)
         result.index = result.index + 1
