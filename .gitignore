@@ -1,0 +1,10 @@
+__pycache__
+.ipynb_checkpoints
+
+*.json
+*.jar
+*.csv
+wordcloud.png
+*.gif
+*.pptx
+!template.pptx
