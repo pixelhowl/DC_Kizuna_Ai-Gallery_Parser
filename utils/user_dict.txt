@@ -1,0 +1,1553 @@
+1묵	NNP
+1붕	NNP
+2묵	NNP
+2붕	NNP
+3바카	NNP
+3붕	NNP
+4붕	NNP
+4차	NNP
+4천왕	NNP
+898	NNP
+가능좌	NNP
+가능좌	NNP
+가울 구라	NNP
+가짜	NNP
+가짜가짜	NNP
+가짜고릴라	NNP
+가짜천사	NNP
+가챠	NNP
+가카	NNP
+가쿠	NNP
+간호사	NNP
+갈꼬	NNP
+갈드컵  NNP	
+갈릴레이	NNP
+감마	NNP
+갓경	NNP
+강남 아줌마	NNP
+강남아줌마	NNP
+개 누나	NNP
+개 이모	NNP
+개누나	NNP
+개돼지	NNP
+개이모	NNP
+개좆미	NNP
+개좆미미	NNP
+갤	NNP
+갤주	NNP
+거근천사	NNP
+게로	NNP
+게임부	NNP
+겐즈키 토지로	NNP
+겜	NNP
+겜부	NNP
+겜잘알	NNP
+겜창	NNP
+고려인삼	NNP
+고로시  NNP	
+고릴라년	NNP
+고블린	NNP
+고성능	NNP
+고야미	NNP
+고자루	NNP
+고토	NNP
+곰	NNP
+곰누나	NNP
+공군	NNP
+공작	NNP
+공포의 군주	NNP
+광대	NNP
+구라	NNP
+구라 동생	NNP
+구라동생	NNP
+구라짱	NNP
+구라쨩	NNP
+구린	NNP
+구웰	NNP
+구웰 오스 걸	NNP
+군도	NNP
+군도 미레이	NNP
+군도미	NNP
+군와	NNP
+굼바	NNP
+굿즈	NNP
+권속	NNP
+귓털	NNP
+그새끼	NNP
+근근웹	NNP
+근첩	NNP
+근혜루	NNP
+기루	NNP
+기리와타	NNP
+기바라	NNP
+기소령	NNP
+기즈나	NNP
+길자렌	NNP
+길자렌 3세	NNP
+김렝가	NNP
+김세아	NNP
+김치산지	NNP
+김치수장	NNP
+까마귀	NNP
+까마귀군주	NNP
+깜둥이	NNP
+깡통계  NNP	
+꿀벌	NNP
+꿀재미	NNP
+끠까미	NNP
+끠카미	NNP
+나가오	NNP
+나가오 케이	NNP
+나기	NNP
+나나시	NNP
+나나시 무메이	NNP
+나노라	NNP
+나라카	NNP
+나루	NNP
+나루미	NNP
+나루세	NNP
+나루세 나루	NNP
+나리	NNP
+나무위키	NNP
+나무위키 여신	NNP
+나무위키여신	NNP
+나미린	NNP
+나비	NNP
+나비 마마	NNP
+나비마마	NNP
+나세라	NNP
+나즈키	NNP
+나츠메	NNP
+나츠이로 마츠리	NNP
+나카오카	NNP
+나키리 아야메	NNP
+나키리구미	NNP
+나토리	NNP
+난스프	NNP
+내일좌	NNP
+냄틔시	NNP
+네네	NNP
+네네치	NNP
+네넷치	NNP
+네덕	NNP
+네루	NNP
+네루네루 태풍	NNP
+네루네루태풍	NNP
+네온	NNP
+네우	NNP
+네이	NNP
+네코노기	NNP
+네코노기 벨	NNP
+네코마타 오카유	NNP
+네코미야	NNP
+네코미야 히나타	NNP
+네팔대폭주	NNP
+념글	NNP
+노도카	NNP
+노랑	NNP
+노랑이	NNP
+노랭	NNP
+노랭이	NNP
+노루	NNP
+노리오	NNP
+노무	NNP
+노부히메	NNP
+노사연	NNP
+노아	NNP
+노에후레	NNP
+노엘	NNP
+노우사기	NNP
+노재미	NNP
+노잼	NNP
+노잼좌	NNP
+노조무	NNP
+노조미	NNP
+노치무	NNP
+노트	NNP
+녹라미	NNP
+녹색라미	NNP
+녹스	NNP
+뇌절	NNP
+누렁	NNP
+누렁이	NNP
+누르	NNP
+누리오	NNP
+누무	NNP
+누부히메	NNP
+누사연	NNP
+누엘	NNP
+눈보라	NNP
+눈스프	NNP
+뉴뉴	NNP
+뉴이	NNP
+뉴이 소시에르	NNP
+느그딸	NNP
+느그병신	NNP
+느그빡통	NNP
+니거	NNP
+니노마에 이나니스	NNP
+니시조노 치구사	NNP
+니아	NNP
+니아 스즈네	NNP
+니지	NNP
+니지산지	NNP
+니지어스	NNP
+니코나마	NNP
+니코동	NNP
+다람쥐	NNP
+다레야넹	NNP
+다즐가든	NNP
+다크소울	NNP
+다크엘프	NNP
+다프네	NNP
+단장	NNP
+단톡	NNP
+단톡방	NNP
+닼소	NNP
+대깨니	NNP
+대깨대전    NNP	
+대깨홀	NNP
+대리한타	NNP
+대장장이	NNP
+대폭주	NNP
+대한리타	NNP
+대황미	NNP
+대황미미	NNP
+대황재미	NNP
+데롱	NNP
+데루타	NNP
+데루타야	NNP
+데몬다이스	NNP
+데바데	NNP
+데비	NNP
+데비데비 데비루	NNP
+데비루	NNP
+데빗치	NNP
+데우스	NNP
+델타	NNP
+도 미레이	NNP
+도도도	NNP
+도라	NNP
+도로보	NNP
+도박좌	NNP
+도토부	NNP
+도트쨩	NNP
+듀라한	NNP
+드럼통	NNP
+드립	NNP
+디렌드라	NNP
+디시	NNP
+디시콘	NNP
+디씨	NNP
+따마귀	NNP
+따마리	NNP
+따모미	NNP
+땃1쥐	NNP
+땃쥐	NNP
+땃쥐맘	NNP
+뗑컨	NNP
+또네	NNP
+똥꼬	NNP
+똥코	NNP
+똥퍼	NNP
+뚝딱이	NNP
+띠뜌	NNP
+라도팡주	NNP
+라따뚜이	NNP
+라미	NNP
+라미즙	NNP
+라이버	NNP
+라이트	NNP
+라지만	NNP
+라팡	NNP
+라프라스	NNP
+라플라스	NNP
+라플러스	NNP
+락	NNP
+란타로	NNP
+랏나 푸티	NNP
+러브락	NNP
+런줌마	NNP
+레나	NNP
+레네	NNP
+레네	NNP
+레다	NNP
+레딧	NNP
+레비	NNP
+레비 엘리파	NNP
+레오나	NNP
+레오스	NNP
+레오스 빈센트	NNP
+레온타인	NNP
+레이	NNP
+레이	NNP
+레이네	NNP
+레이드  NNP	
+레이리	NNP
+레이리	NNP
+레인	NNP
+레인 패터슨	NNP
+레인퍼프	NNP
+로렌	NNP
+로렌 이로아스	NNP
+로로코	NNP
+로베루	NNP
+로벨	NNP
+로보코	NNP
+로아	NNP
+로에이	NNP
+로에이챤	NNP
+로제미	NNP
+로제미 러브락	NNP
+로젠탈	NNP
+로커	NNP
+로하	NNP
+로헤이챤	NNP
+롤	NNP
+롤드컵	NNP
+롤미녀	NNP
+루 루 펀 치	NNP
+루굴	NNP
+루기견	NNP
+루나	NNP
+루나	NNP
+루루	NNP
+루루도	NNP
+루리	NNP
+루리	NNP
+루리웹	NNP
+루시아	NNP
+루이	NNP
+루이네	NNP
+루이모	NNP
+루이스	NNP
+루이스 캐미	NNP
+루이크로	NNP
+루키로키	NNP
+류구	NNP
+류네	NNP
+류린	NNP
+류린	NNP
+류센	NNP
+류셴	NNP
+류하리	NNP
+리리	NNP
+리리무	NNP
+리림	NNP
+리무	NNP
+리벤지	NNP
+리본	NNP
+리수	NNP
+리스	NNP
+리스너	NNP
+리아스	NNP
+리오	NNP
+리온	NNP
+리제	NNP
+리제 헬레스타	NNP
+리즈	NNP
+리츠키	NNP
+리츠킨	NNP
+리키이치	NNP
+리타	NNP
+린	NNP
+린도 미코토	NNP
+릴리	NNP
+릿카	NNP
+링피트	NNP
+마구로나	NNP
+마그니	NNP
+마나	NNP
+마노 알로에	NNP
+마루마루	NNP
+마리루시	NNP
+마리오	NNP
+마리오네트	NNP
+마리카	NNP
+마리후레	NNP
+마린	NNP
+마린선장	NNP
+마마	NNP
+마마츠리	NNP
+마망	NNP
+마메네코	NNP
+마법소녀	NNP
+마사루	NNP
+마시로	NNP
+마시롱	NNP
+마오	NNP
+마오루야	NNP
+마왕루야	NNP
+마유유	NNP
+마유즈미	NNP
+마유즈미 카이	NNP
+마이모토	NNP
+마이모토 케이스케	NNP
+마인크	NNP
+마츠리	NNP
+마츠카이 마오	NNP
+마치타 치마	NNP
+마카이노 리림	NNP
+마코토	NNP
+마크	NNP
+마키아	NNP
+마타네	NNP
+마토이	NNP
+마히	NNP
+마히로	NNP
+마히롱	NNP
+마히마히	NNP
+만쥬	NNP
+말랑이	NNP
+망겜	NNP
+매그니	NNP
+맥날	NNP
+맥너겟	NNP
+메가	NNP
+메가히메	NNP
+메루	NNP
+메르	NNP
+메리	NNP
+메리	NNP
+메리	NNP
+메리상	NNP
+메릿사 킨렌카	NNP
+메메	NNP
+메메메	NNP
+메모리	NNP
+메아	NNP
+메아리	NNP
+메어리	NNP
+메이로	NNP
+메이지	NNP
+멘겐	NNP
+멜	NNP
+멜라티카	NNP
+멜핏사	NNP
+모노노베 아리스	NNP
+모뉴뉴	NNP
+모루루	NNP
+모루루	NNP
+모루루나	NNP
+모리 칼리오페	NNP
+모리나카 카자키	NNP
+모모	NNP
+모모스즈 네네	NNP
+모아	NNP
+모아린	NNP
+모에미	NNP
+모이라	NNP
+모이모이	NNP
+모치 히요코	NNP
+모치냥	NNP
+몬스터헌터	NNP
+몬헌	NNP
+몸캠	NNP
+무나	NNP
+무나 호시노바	NNP
+무너	NNP
+무노	NNP
+무누	NNP
+무라사키 시온	NNP
+무메이	NNP
+무유	NNP
+문어	NNP
+문어눈나	NNP
+물그릇	NNP
+물통	NNP
+뭇쿤	NNP
+미.레이	NNP
+미1레이	NNP
+미꼬	NNP
+미꼬피	NNP
+미나미	NNP
+미나토	NNP
+미나토 아쿠아	NNP
+미녀만화가	NNP
+미대생	NNP
+미도리	NNP
+미라이	NNP
+미라이 아카리	NNP
+미래이	NNP
+미래인	NNP
+미레1이	NNP
+미레이	NNP
+미리아	NNP
+미만노	NNP
+미미	NNP
+미셸라	NNP
+미스미	NNP
+미스틸테인	NNP
+미아	NNP
+미야비	NNP
+미야코	NNP
+미오	NNP
+미오샤	NNP
+미오파	NNP
+미옹	NNP
+미즈키	NNP
+미케네코	NNP
+미코	NNP
+미코로네	NNP
+미코멧	NNP
+미코토	NNP
+미코페코	NNP
+미토	NNP
+민수하	NNP
+밀크	NNP
+밀키	NNP
+바바밧	NNP
+바보병신	NNP
+바부미	NNP
+바아차루	NNP
+바치콘	NNP
+바치콩	NNP
+바카타레	NNP
+박사	NNP
+반기라스	NNP
+반데	NNP
+반데라스	NNP
+반하다	NNP
+발로란트	NNP
+배그	NNP
+배빵	NNP
+백브라힘	NNP
+밸즈	NNP
+버건디	NNP
+버미육	NNP
+버삼촌	NNP
+버생	NNP
+버센    NNP	
+버애니	NNP
+버차루	NNP
+버추얼	NNP
+버츄얼	NNP
+버튜버	NNP
+버프슨	NNP
+범고래	NNP
+베스퍼	NNP
+베이	NNP
+베이리스	NNP
+베일렌	NNP
+벨	NNP
+벨몬드	NNP
+벨몬드 반데라스	NNP
+벨붕이	NNP
+벨주석	NNP
+벨즈	NNP
+병신	NNP
+보라	NNP
+보지가와	NNP
+보지카와	NNP
+보탄	NNP
+부엉이	NNP
+부장	NNP
+분위기경찰	NNP
+뷰지	NNP
+브금	NNP
+브리스코	NNP
+브이게이밍	NNP
+브이아파	NNP
+브튜버	NNP
+블레이드    NNP	
+비건	NNP
+비올레타	NNP
+비틱	NNP
+빈센트	NNP
+빵떡	NNP
+빼꺼	NNP
+뽀무	NNP
+뽀시래기	NNP
+사기고양이	NNP
+사나	NNP
+사단장	NNP
+사메	NNP
+사사키	NNP
+사사키 사쿠	NNP
+사신	NNP
+사에구사 아키나	NNP
+사이퍼펑크	NNP
+사장	NNP
+사쵸	NNP
+사쵸	NNP
+사축	NNP
+사카마타	NNP
+사쿠	NNP
+사쿠라 리츠키	NNP
+사쿠라 미코	NNP
+사펑	NNP
+산고	NNP
+산뜻좌	NNP
+산시타	NNP
+산토리	NNP
+살로메	NNP
+상어	NNP
+상어이빨	NNP
+새이모	NNP
+샌즈	NNP
+생쥐	NNP
+샤니	NNP
+샤니마스	NNP
+샷건	NNP
+석유왕	NNP
+선장	NNP
+세레스 파우나	NNP
+세실리아	NNP
+세아	NNP
+세키시로	NNP
+세키시로 미코	NNP
+세토 미야코	NNP
+세피나	NNP
+세피라	NNP
+센자와	NNP
+센초	NNP
+센쵸	NNP
+셀렌	NNP
+셀렌 타츠키	NNP
+셸린 버건디	NNP
+소나기	NNP
+소라	NNP
+소라호시 키라메	NNP
+소우	NNP
+소우야 이치카	NNP
+송미아	NNP
+쇼룸	NNP
+수녀	NNP
+수브딱	NNP
+수장	NNP
+수하	NNP
+쉑	NNP
+슈바슈바	NNP
+슈퍼네네치	NNP
+슈퍼챗	NNP
+스몰아메	NNP
+스바로	NNP
+스바루	NNP
+스바스바	NNP
+스바우	NNP
+스오 산고	NNP
+스오우 파토라	NNP
+스이	NNP
+스이세이	NNP
+스이짱	NNP
+스이쨩	NNP
+스즈	NNP
+스즈네	NNP
+스즈카 우타코	NNP
+스즈키 마사루	NNP
+스즈하라	NNP
+스즈하라 루루	NNP
+스코	NNP
+스코야	NNP
+스코야 카나	NNP
+스탬프도둑	NNP
+스파챠	NNP
+스펠렁키	NNP
+스플래툰	NNP
+스플레툰	NNP
+슨상	NNP
+슨상 동생	NNP
+슨상동생	NNP
+시계	NNP
+시계 누나	NNP
+시계 눈나	NNP
+시계누나	NNP
+시계눈나	NNP
+시구레	NNP
+시노부	NNP
+시누나	NNP
+시라누이	NNP
+시라누이 후레아	NNP
+시라유리	NNP
+시라유리 릴리	NNP
+시라카미	NNP
+시라카미 후부키	NNP
+시로	NNP
+시로가네 노엘	NNP
+시로미야 미미	NNP
+시리오스	NNP
+시모네타	NNP
+시바	NNP
+시발	NNP
+시부야 하지메	NNP
+시시로 보탄	NNP
+시시롱	NNP
+시엔	NNP
+시엘	NNP
+시오	NNP
+시온	NNP
+시우	NNP
+시이나	NNP
+시이나 유이카	NNP
+시이시이	NNP
+시줌마	NNP
+시즈린	NNP
+시즈카	NNP
+시즈카 린	NNP
+시트리	NNP
+신기루	NNP
+신유야	NNP
+쌰유리	NNP
+씨발	NNP
+씹	NNP
+씹덕	NNP
+씹창	NNP
+아냐	NNP
+아냐 멜핏사	NNP
+아니마레	NNP
+아디아	NNP
+아라	NNP
+아라눈나	NNP
+아루	NNP
+아루란	NNP
+아루란디스	NNP
+아루스 아르마르	NNP
+아르란	NNP
+아르란디스	NNP
+아르마르	NNP
+아르말	NNP
+아르스	NNP
+아르시니아	NNP
+아르신	NNP
+아르카디아	NNP
+아르테미스	NNP
+아리멍뭉	NNP
+아리스	NNP
+아마네 카나타	NNP
+아마레	NNP
+아마먀	NNP
+아마미야	NNP
+아마미야 코코로	NNP
+아먀먀	NNP
+아먀미야	NNP
+아메	NNP
+아멜리아	NNP
+아미미야	NNP
+아반루나	NNP
+아브라힘	NNP
+아사노	NNP
+아사노 루리	NNP
+아사라미	NNP
+아사히나 아카네	NNP
+아스마	NNP
+아스텔	NNP
+아야메	NNP
+아오	NNP
+아오이	NNP
+아윤다	NNP
+아이	NNP
+아이노조 미나미	NNP
+아이돌부	NNP
+아이리스	NNP
+아이바 우이하	NNP
+아즈림	NNP
+아즈마	NNP
+아즈마 림	NNP
+아즈치 모모	NNP
+아즈키	NNP
+아카네	NNP
+아카리	NNP
+아카이 하아토	NNP
+아코	NNP
+아쿠마	NNP
+아쿠시아	NNP
+아쿠아	NNP
+아쿠아크루	NNP
+아쿠킨	NNP
+아크	NNP
+아크아	NNP
+아키	NNP
+아키 로젠탈	NNP
+아키나	NNP
+아키라	NNP
+아키로제	NNP
+아타싀	NNP
+아타시	NNP
+아토리 코토코	NNP
+아틔시	NNP
+아티시	NNP
+악시아	NNP
+악취시	NNP
+안게	NNP
+안쥬	NNP
+안코	NNP
+알로에	NNP
+알루에트	NNP
+알스트로에메리아	NNP
+알테어	NNP
+암사자	NNP
+암컷무브	NNP
+앙게	NNP
+액시아	NNP
+액시아 크로네	NNP
+앱랜드	NNP
+야겜좌	NNP
+야고    NNP	
+야구루마 리네	NNP
+야다야다	NNP
+야마가미 카루타	NNP
+야마다	NNP
+야미노	NNP
+야붕	NNP
+야붕이	NNP
+야시로 키즈쿠	NNP
+야시키	NNP
+야시키 시엘	NNP
+야시키즈	NNP
+야호	NNP
+얌미	NNP
+양 이모	NNP
+양나리	NNP
+양붕이	NNP
+양이모	NNP
+양쥬	NNP
+양쥬 카트리나	NNP
+양파	NNP
+어몽어스	NNP
+어쌔신크리드	NNP
+어크	NNP
+언더테일	NNP
+언텔	NNP
+업데이트	NNP
+에고사  NNP	
+에나	NNP
+에네	NNP
+에노구	NNP
+에덴구미	NNP
+에디	NNP
+에라	NNP
+에라이	NNP
+에레나	NNP
+에로하	NNP
+에루	NNP
+에리	NNP
+에리카	NNP
+에마	NNP
+에마 오우거스트	NNP
+에모이	NNP
+에반스	NNP
+에비오	NNP
+에아루	NNP
+에이렌	NNP
+에이브	NNP
+에이쟝	NNP
+에이짱	NNP
+에이쨩	NNP
+에이펙스	NNP
+에일렌	NNP
+에카비라	NNP
+에펙	NNP
+엑스 에비오	NNP
+엑시아	NNP
+엔도우	NNP
+엔마	NNP
+엔카	NNP
+엔카 이모	NNP
+엔카이모	NNP
+엔텀	NNP
+엘나	NNP
+엘라티오라	NNP
+엘레나	NNP
+엘리라	NNP
+엘리라 펜도라	NNP
+엘리파	NNP
+엠마	NNP
+여관주인	NNP
+여신님	NNP
+역전우동	NNP
+연근	NNP
+연꽃눈	NNP
+염상	NNP
+오가	NNP
+오노마치 하루카	NNP
+오니	NNP
+오로 크로니	NNP
+오리	NNP
+오마루	NNP
+오마루 폴카	NNP
+오마룽	NNP
+오메가	NNP
+오메가 시스터즈	NNP
+오메시스	NNP
+오비드	NNP
+오시헨	NNP
+오야붕	NNP
+오오조라 스바루	NNP
+오오카미 미오	NNP
+오이나리	NNP
+오죠	NNP
+오지유	NNP
+오카마	NNP
+오카유	NNP
+오카코로	NNP
+오타비아	NNP
+오토기바라 에라	NNP
+오프파코	NNP
+오하루쥬	NNP
+오하스바	NNP
+올리	NNP
+올리버	NNP
+올리버 에반스	NNP
+와라베	NNP
+와라베다	NNP
+와라베다 메이지	NNP
+와라와	NNP
+와타메	NNP
+와타메이트	NNP
+와타멜론	NNP
+왓슨	NNP
+왓슨 동생	NNP
+왓슨 아멜리아	NNP
+왓슨동생	NNP
+왓슨상	NNP
+왓슨상 동생	NNP
+왓슨상동생	NNP
+요나구니	NNP
+요루미	NNP
+요루미 레나	NNP
+요메미	NNP
+요미	NNP
+요미나리	NNP
+요스즈	NNP
+요조라 메루	NNP
+요츠하	NNP
+요코	NNP
+요키	NNP
+요키잇	NNP
+욘토	NNP
+용꼬	NNP
+용사부	NNP
+용하꼬	NNP
+우루하 루시아	NNP
+우리딸	NNP
+우리병신	NNP
+우리빡통	NNP
+우리찐	NNP
+우사다	NNP
+우사다 페코라	NNP
+우시미 이치고	NNP
+우유	NNP
+우이	NNP
+우이 마마	NNP
+우이마마	NNP
+우이하	NNP
+우즈키 코우	NNP
+우카	NNP
+우타카타 메모리	NNP
+우타코	NNP
+우토	NNP
+우페	NNP
+우흥	NNP
+우흥이	NNP
+웃음창녀	NNP
+웃음할매	NNP
+웅치	NNP
+원신	NNP
+위원장	NNP
+위피	NNP
+유게	NNP
+유나기 엘나	NNP
+유노하라 이즈미	NNP
+유논	NNP
+유니	NNP
+유루리	NNP
+유메사키	NNP
+유메오	NNP
+유메오 카케루	NNP
+유메하 마타네	NNP
+유아	NNP
+유아앗	NNP
+유야	NNP
+유연	NNP
+유우키 치히로	NNP
+유우히 리리	NNP
+유이	NNP
+유즈키	NNP
+유즈키 로아	NNP
+유즈키 초코	NNP
+유즈키상	NNP
+유키	NNP
+유키나	NNP
+유키민	NNP
+유키민  NNP	
+유키시로 마히로	NNP
+유키하나 라미	NNP
+유튜버	NNP
+유튜브	NNP
+음란너구리	NNP
+음습좌	NNP
+읍슴	NNP
+응고	NNP
+응나	NNP
+응나 이모	NNP
+응나이모	NNP
+이그노시스	NNP
+이나	NNP
+이나니스	NNP
+이나바	NNP
+이나바 하네루	NNP
+이누가미 코로네	NNP
+이누이	NNP
+이뉴이	NNP
+이뉴이 토코	NNP
+이로아스	NNP
+이로하	NNP
+이로하	NNP
+이로하스	NNP
+이브라힘	NNP
+이브랜드	NNP
+이시우	NNP
+이에나가	NNP
+이에나가 무기	NNP
+이오리	NNP
+이오피	NNP
+이온	NNP
+이이온나	NNP
+이주인	NNP
+이즈루	NNP
+이즈모 카스미	NNP
+이즈미	NNP
+이즈츠	NNP
+이치고	NNP
+이치미	NNP
+이치카	NNP
+이치카라	NNP
+이토우	NNP
+인어	NNP
+일십백천만	NNP
+임포쟈나이	NNP
+작은 이모	NNP
+작은이모	NNP
+잼민이	NNP
+쟝	NNP
+전투해삼	NNP
+정병	NNP
+정병장	NNP
+정병쟝	NNP
+정병쨩	NNP
+제아	NNP
+제타	NNP
+조카	NNP
+조토	NNP
+조힘한	NNP
+족장	NNP
+존나	NNP
+좀비	NNP
+좃	NNP
+좆	NNP
+좆경	NNP
+좆냥이	NNP
+좆미	NNP
+좆지메	NNP
+죠 리키이치	NNP
+주석	NNP
+주인님	NNP
+중붕	NNP
+쥐	NNP
+쥬지	NNP
+즙	NNP
+지루	NNP
+지유	NNP
+진짜진짜	NNP
+진짜천사	NNP
+짝귀	NNP
+짭레나	NNP
+짭상어	NNP
+짱	NNP
+짱깨안경	NNP
+짱마리	NNP
+짱붕	NNP
+쨩	NNP
+쭀	NNP
+찐따	NNP
+찐모미	NNP
+찐텐	NNP
+찹쌀떡	NNP
+채아라	NNP
+챠로	NNP
+챠아카	NNP
+챠이카	NNP
+챤케	NNP
+천 하 포 무	NNP
+천황	NNP
+청소부	NNP
+초이	NNP
+초코	NNP
+초코센세	NNP
+초쿄	NNP
+초쿄센세	NNP
+총수	NNP
+쵸키	NNP
+츠구	NNP
+츠노마키	NNP
+츠노마키 와타메	NNP
+츠무구	NNP
+츠바키	NNP
+츠쿠모 사나	NNP
+츠키노 미토	NNP
+치구사	NNP
+치꼬	NNP
+치마	NNP
+치아라	NNP
+치에리	NNP
+치여사	NNP
+치재앙	NNP
+치쨩	NNP
+치코	NNP
+치킨	NNP
+치토세	NNP
+치호	NNP
+치호도령	NNP
+치히로	NNP
+카가미 하야토장	NNP
+카게루	NNP
+카구야	NNP
+카구야루나	NNP
+카나	NNP
+카나땅	NNP
+카나스이	NNP
+카나에	NNP
+카나타	NNP
+카나토	NNP
+카나토와	NNP
+카난	NNP
+카네시로	NNP
+카네코	NNP
+카도	NNP
+카루	NNP
+카루타	NNP
+카모미	NNP
+카스미	NNP
+카시코 마리	NNP
+카에데	NNP
+카엘라	NNP
+카오루	NNP
+카와세	NNP
+카와요	NNP
+카이다	NNP
+카이다 하루	NNP
+카자	NNP
+카자마	NNP
+카자키	NNP
+카제미 쿠쿠	NNP
+카타리베 츠무구	NNP
+카후	NNP
+칸다	NNP
+칸다 쇼이치	NNP
+칼리	NNP
+칼리오페	NNP
+캠굴	NNP
+케로베로스	NNP
+케모노즈	NNP
+케이	NNP
+케키히메	NNP
+켄모치 토우야	NNP
+코골이좌	NNP
+코골좌	NNP
+코니파	NNP
+코로네	NNP
+코로상	NNP
+코로이모	NNP
+코르넬리아	NNP
+코바야시	NNP
+코발스키	NNP
+코보	NNP
+코사카	NNP
+코알라	NNP
+코야미	NNP
+코오네	NNP
+코왈스키	NNP
+코우	NNP
+코죠	NNP
+코코	NNP
+코코로	NNP
+코코아	NNP
+코코츠키	NNP
+코토네	NNP
+코토코	NNP
+코하쿠	NNP
+콘루루	NNP
+콘방도도도	NNP
+콘얍삐	NNP
+콜라보	NNP
+콩고	NNP
+콩껄룩	NNP
+콩냥이	NNP
+쿄코	NNP
+쿠레이지 올리	NNP
+쿠로아	NNP
+쿠로이 시바	NNP
+쿠로카미	NNP
+쿠루스	NNP
+쿠루스 나츠메	NNP
+쿠소	NNP
+쿠소가키	NNP
+쿠즈	NNP
+쿠즈하	NNP
+쿠쿠	NNP
+쿠키요미	NNP
+크로네	NNP
+크로노	NNP
+크로노 락	NNP
+크로니	NNP
+크로메이	NNP
+크리스	NNP
+크림슨	NNP
+크손	NNP
+큰상어	NNP
+클레어	NNP
+클로에	NNP
+키갤	NNP
+키갤 조카	NNP
+키갤조카	NNP
+키라	NNP
+키라메	NNP
+키류 코코	NNP
+키리누기	NNP
+키리누키	NNP
+키리누키	NNP
+키미땃쥐	NNP
+키미타치	NNP
+키붕이	NNP
+키순이	NNP
+키아라	NNP
+키즈나 아이	NNP
+키즈나아이	NNP
+키즈쿠	NNP
+키타코지 히스이	NNP
+킨렌카	NNP
+킷쯔	NNP
+타라치오	NNP
+타마	NNP
+타마	NNP
+타마	NNP
+타마부장	NNP
+타마키	NNP
+타마키	NNP
+타츠키	NNP
+타카나시 키아라	NNP
+타카모리	NNP
+타카야마 리온	NNP
+타코	NNP
+타피오카	NNP
+탐정	NNP
+턱	NNP
+테마리	NNP
+테에테에	NNP
+텐구	NNP
+텐마	NNP
+텐시	NNP
+텐진	NNP
+텐진 코토네	NNP
+텐텐	NNP
+토끼	NNP
+토끼년	NNP
+토도 코하쿠	NNP
+토도로키 쿄코	NNP
+토마리	NNP
+토마리마마	NNP
+토야	NNP
+토와	NNP
+토와사마	NNP
+토우야	NNP
+토지로	NNP
+토코	NNP
+토코야미 토와	NNP
+토키노 소라	NNP
+톼삼	NNP
+퇴1삼	NNP
+퇴삼	NNP
+틀	NNP
+틀딱	NNP
+틀딱	NNP
+파도	NNP
+파란아야메	NNP
+파르페	NNP
+파리마마	NNP
+파리프로	NNP
+파볼리아	NNP
+파볼리아 레이네	NNP
+파우나	NNP
+파잉	NNP
+파즈모포비아	NNP
+파코	NNP
+파코라	NNP
+파코라이트	NNP
+파코요	NNP
+파토라	NNP
+파트라	NNP
+팔로우	NNP
+팜스포비아	NNP
+팡대	NNP
+팬박스	NNP
+펀딩	NNP
+페도	NNP
+페르미	NNP
+페코	NNP
+페코라	NNP
+페코마리	NNP
+페코마린	NNP
+페코무나	NNP
+페코미코	NNP
+페트라 구린	NNP
+페페	NNP
+펜도라	NNP
+펠라	NNP
+펨돔	NNP
+펭귄	NNP
+포루	NNP
+포무	NNP
+포무 레인퍼프	NNP
+포켓몬	NNP
+포탈	NNP
+폴가이즈	NNP
+폴가이지	NNP
+폴거이즈	NNP
+폴카	NNP
+퐁코	NNP
+퐁코츠	NNP
+퐈나	NNP
+푸테치	NNP
+푸티	NNP
+프라나쟈	NNP
+프랑스	NNP
+프랑스 누나	NNP
+프랑스 이모	NNP
+프랑스누나	NNP
+프랑스이모	NNP
+프렌	NNP
+프렌 E 루스타리오	NNP
+플레이  NNP	
+플레이어    NNP	
+플레이팅    NNP	
+플스	NNP
+피나	NNP
+피나나	NNP
+피나나 류구	NNP
+피노	NNP
+피망군	NNP
+피아제	NNP
+피요	NNP
+피카미	NNP
+피카츄	NNP
+필하모닉	NNP
+핑키	NNP
+하꼬	NNP
+하나린	NNP
+하나바타케 챠이카	NNP
+하네루	NNP
+하라마웅	NNP
+하루	NNP
+하루사키 에아루	NNP
+하루카	NNP
+하루토	NNP
+하리	NNP
+하아짜마	NNP
+하아쨔마	NNP
+하아토	NNP
+하아톤	NNP
+하야마	NNP
+하야마 마린	NNP
+하야세	NNP
+하야세 소우	NNP
+하얀마	NNP
+하윤	NNP
+하지메	NNP
+하짜마	NNP
+하쨔마	NNP
+하쨔메쨔	NNP
+하챠마	NNP
+하카세	NNP
+하카세 후유키	NNP
+하코스	NNP
+하코즈	NNP
+하코즈 벨즈	NNP
+한별	NNP
+한별이	NNP
+한치호	NNP
+한튜버	NNP
+할매	NNP
+해바라기	NNP
+해삼	NNP
+해커	NNP
+햇반	NNP
+햇번	NNP
+허니스토	NNP
+헤이민  NNP	
+현타	NNP
+혐끼	NNP
+혐한	NNP
+혜자	NNP
+호감작  NNP	
+호사카와	NNP
+호쇼	NNP
+호쇼 마린	NNP
+호시마치	NNP
+호시마치 스이세이	NNP
+호시카와	NNP
+호시카와 사라	NNP
+혼마 히마와리	NNP
+혼히마	NNP
+홀로	NNP
+홀로라이브	NNP
+홀로스타즈	NNP
+홀로하	NNP
+홀몽	NNP
+홀몽어스	NNP
+황녀	NNP
+회장	NNP
+후땅	NNP
+후레아	NNP
+후렌	NNP
+후마	NNP
+후미	NNP
+후미노 타마키	NNP
+후부미오	NNP
+후부키	NNP
+후수장	NNP
+후시미 가쿠	NNP
+후와 미나토	NNP
+후와모치 안코	NNP
+후유키	NNP
+후재앙	NNP
+후지	NNP
+후지	NNP
+후타바	NNP
+흑인	NNP
+희주	NNP
+히구치 카에데	NNP
+히나	NNP
+히나	NNP
+히나코	NNP
+히나타	NNP
+히노쿠마 란타로	NNP
+히라 히카리	NNP
+히마	NNP
+히마리	NNP
+히마와리	NNP
+히메	NNP
+히메모리 루나	NNP
+히메히나	NNP
+히바리	NNP
+히비키	NNP
+히비키 아오	NNP
+히스삐	NNP
+히스이	NNP
+히오스	NNP
+히요	NNP
+히요코	NNP
+히요코	NNP
+히이로	NNP
+히카리	NNP
+힘숨찐	NNP
+A짱	NNP
+A쨩	NNP
+Atori	NNP
+AZKi	NNP
+bora	NNP
+boraさん	NNP
+EMA	NNP
+IRyS	NNP
+k1리누키	NNP
+K1리누키	NNP
+K1리누키	NNP
+Kㅣ리누키	NNP
+kmnz	NNP
+kotoko	NNP
+KOTOKO	NNP
+La+	NNP
+namirin	NNP
+pp천사	NNP
+PP천사	NNP
+pp텐시	NNP
+PP텐시	NNP
+Teamates	NNP
+VerseN  NNP	
+WAH	NNP
+watamelon	NNP
+YuNi	NNP
+ぽ	NNP
+공포의군주	NNP
+나나모나	NNP
+이즈키	NNP
+우노	NNP
+세라	NNP
+오토하	NNP
+노보코	NNP
+초코센	NNP
+쵸코	NNP
+쵸코센세	NNP
+쵸코센	NNP
+구타라	NNP
+와미	NNP
+포루코요	NNP
+코요리	NNP
+핑라미	NNP
+아사코요	NNP
+코요	NNP
+점장	NNP
+챤캐	NNP
+찬케	NNP
+찬캐	NNP
+짭로하	NNP
+총장	NNP
+kson	NNP
+촌장	NNP
+소믈리에	NNP
+파꼬	NNP
+린네	NNP
+칭꼬	NNP
+레이토	NNP
+카미노	NNP
+스텔라	NNP
+마도카	NNP
+보라하꼬	NNP
+사키	NNP
+하나땅	NNP
+꽃이모	NNP
+무앙	NNP
+아이언마우스	NNP
+철쥐	NNP
+베리	NNP
+요시카	NNP
+고구마	NNP
+좆의 메아	NNP
+알테아	NNP
+루굴이	NNP
+네크로맨서	NNP
+나즈나	NNP
+미리쿠룬	NNP
+미리리	NNP
+루루리카	NNP
+리쿠무	NNP
+카나우	NNP
+MUS1CA	NNP
+츠나	NNP
+로켓이모	NNP
+로켓 이모	NNP
+유니콘이모	NNP
+유니콘 이모	NNP
+무기	NNP
+수학귀신	NNP
+김치구사	NNP
+짭네네	NNP
+조또	NNP
+스칼레	NNP
+스칼렛	NNP
+강도	NNP
+메루키스	NNP
+리카	NNP
+무키로제	NNP
+아쿠땅	NNP
+네포라보	NNP
+루이클로	NNP
+코요테	NNP
+교수님	NNP
+나유타	NNP
+아메무메	NNP
+시계우흥	NNP
+태희	NNP
+인도라팡	NNP
+인니라팡	NNP
+이오피프틴	NNP
+인니우흥	NNP
