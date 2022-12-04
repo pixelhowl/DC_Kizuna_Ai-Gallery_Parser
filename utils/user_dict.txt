@@ -16,16 +16,19 @@
 가짜고릴라	NNP
 가짜천사	NNP
 가챠	NNP
+가치코이	NNP
+가치코이거리	NNP
 가카	NNP
 가쿠	NNP
 간호사	NNP
 갈꼬	NNP
-갈드컵  NNP	
+갈드컵	NNP
 갈릴레이	NNP
 감마	NNP
 갓경	NNP
 강남 아줌마	NNP
 강남아줌마	NNP
+강도	NNP
 개 누나	NNP
 개 이모	NNP
 개누나	NNP
@@ -43,20 +46,24 @@
 겜부	NNP
 겜잘알	NNP
 겜창	NNP
+고구마	NNP
 고려인삼	NNP
-고로시  NNP	
+고로시	NNP
 고릴라년	NNP
 고블린	NNP
 고성능	NNP
 고야미	NNP
 고자루	NNP
 고토	NNP
+골드짐	NNP
 곰	NNP
 곰누나	NNP
 공군	NNP
 공작	NNP
 공포의 군주	NNP
+공포의군주	NNP
 광대	NNP
+교수님	NNP
 구라	NNP
 구라 동생	NNP
 구라동생	NNP
@@ -65,6 +72,7 @@
 구린	NNP
 구웰	NNP
 구웰 오스 걸	NNP
+구타라	NNP
 군도	NNP
 군도 미레이	NNP
 군도미	NNP
@@ -86,12 +94,14 @@
 길자렌 3세	NNP
 김렝가	NNP
 김세아	NNP
+김치구사	NNP
 김치산지	NNP
 김치수장	NNP
 까마귀	NNP
 까마귀군주	NNP
 깜둥이	NNP
-깡통계  NNP	
+깡통계	NNP
+꽃이모	NNP
 꿀벌	NNP
 꿀재미	NNP
 끠까미	NNP
@@ -99,6 +109,7 @@
 나가오	NNP
 나가오 케이	NNP
 나기	NNP
+나나모나	NNP
 나나시	NNP
 나나시 무메이	NNP
 나노라	NNP
@@ -116,6 +127,8 @@
 나비 마마	NNP
 나비마마	NNP
 나세라	NNP
+나유타	NNP
+나즈나	NNP
 나즈키	NNP
 나츠메	NNP
 나츠이로 마츠리	NNP
@@ -141,7 +154,9 @@
 네코마타 오카유	NNP
 네코미야	NNP
 네코미야 히나타	NNP
+네크로맨서	NNP
 네팔대폭주	NNP
+네포라보	NNP
 념글	NNP
 노도카	NNP
 노랑	NNP
@@ -151,6 +166,7 @@
 노루	NNP
 노리오	NNP
 노무	NNP
+노보코	NNP
 노부히메	NNP
 노사연	NNP
 노아	NNP
@@ -175,6 +191,7 @@
 누무	NNP
 누부히메	NNP
 누사연	NNP
+누아르	NNP
 누엘	NNP
 눈보라	NNP
 눈스프	NNP
@@ -205,7 +222,7 @@
 단톡방	NNP
 닼소	NNP
 대깨니	NNP
-대깨대전    NNP	
+대깨대전	NNP
 대깨홀	NNP
 대리한타	NNP
 대장장이	NNP
@@ -242,6 +259,8 @@
 따마귀	NNP
 따마리	NNP
 따모미	NNP
+딸기 우유	NNP
+딸기우유	NNP
 땃1쥐	NNP
 땃쥐	NNP
 땃쥐맘	NNP
@@ -264,6 +283,7 @@
 라플라스	NNP
 라플러스	NNP
 락	NNP
+란도	NNP
 란타로	NNP
 랏나 푸티	NNP
 러브락	NNP
@@ -282,9 +302,10 @@
 레이	NNP
 레이	NNP
 레이네	NNP
-레이드  NNP	
+레이드	NNP
 레이리	NNP
 레이리	NNP
+레이토	NNP
 레인	NNP
 레인 패터슨	NNP
 레인퍼프	NNP
@@ -301,6 +322,8 @@
 로제미 러브락	NNP
 로젠탈	NNP
 로커	NNP
+로켓 이모	NNP
+로켓이모	NNP
 로하	NNP
 로헤이챤	NNP
 롤	NNP
@@ -308,11 +331,14 @@
 롤미녀	NNP
 루 루 펀 치	NNP
 루굴	NNP
+루굴이	NNP
 루기견	NNP
 루나	NNP
 루나	NNP
 루루	NNP
 루루도	NNP
+루루리카	NNP
+루루후	NNP
 루리	NNP
 루리	NNP
 루리웹	NNP
@@ -323,6 +349,7 @@
 루이스	NNP
 루이스 캐미	NNP
 루이크로	NNP
+루이클로	NNP
 루키로키	NNP
 류구	NNP
 류네	NNP
@@ -348,9 +375,12 @@
 리즈	NNP
 리츠키	NNP
 리츠킨	NNP
+리카	NNP
+리쿠무	NNP
 리키이치	NNP
 리타	NNP
 린	NNP
+린네	NNP
 린도 미코토	NNP
 릴리	NNP
 릿카	NNP
@@ -359,6 +389,7 @@
 마그니	NNP
 마나	NNP
 마노 알로에	NNP
+마도카	NNP
 마루마루	NNP
 마리루시	NNP
 마리오	NNP
@@ -386,6 +417,7 @@
 마인크	NNP
 마츠리	NNP
 마츠카이 마오	NNP
+마치타	NNP
 마치타 치마	NNP
 마카이노 리림	NNP
 마코토	NNP
@@ -406,6 +438,7 @@
 메가	NNP
 메가히메	NNP
 메루	NNP
+메루키스	NNP
 메르	NNP
 메리	NNP
 메리	NNP
@@ -443,6 +476,7 @@
 몬스터헌터	NNP
 몬헌	NNP
 몸캠	NNP
+무기	NNP
 무나	NNP
 무나 호시노바	NNP
 무너	NNP
@@ -450,7 +484,9 @@
 무누	NNP
 무라사키 시온	NNP
 무메이	NNP
+무앙	NNP
 무유	NNP
+무키로제	NNP
 문어	NNP
 문어눈나	NNP
 물그릇	NNP
@@ -472,7 +508,9 @@
 미래인	NNP
 미레1이	NNP
 미레이	NNP
+미리리	NNP
 미리아	NNP
+미리쿠룬	NNP
 미만노	NNP
 미미	NNP
 미셸라	NNP
@@ -517,7 +555,7 @@
 버미육	NNP
 버삼촌	NNP
 버생	NNP
-버센    NNP	
+버센	NNP
 버애니	NNP
 버차루	NNP
 버추얼	NNP
@@ -525,6 +563,7 @@
 버튜버	NNP
 버프슨	NNP
 범고래	NNP
+베리	NNP
 베스퍼	NNP
 베이	NNP
 베이리스	NNP
@@ -537,6 +576,7 @@
 벨즈	NNP
 병신	NNP
 보라	NNP
+보라하꼬	NNP
 보지가와	NNP
 보지카와	NNP
 보탄	NNP
@@ -549,7 +589,7 @@
 브이게이밍	NNP
 브이아파	NNP
 브튜버	NNP
-블레이드    NNP	
+블레이드	NNP
 비건	NNP
 비올레타	NNP
 비틱	NNP
@@ -575,6 +615,7 @@
 사쿠	NNP
 사쿠라 리츠키	NNP
 사쿠라 미코	NNP
+사키	NNP
 사펑	NNP
 산고	NNP
 산뜻좌	NNP
@@ -591,6 +632,7 @@
 샷건	NNP
 석유왕	NNP
 선장	NNP
+세라	NNP
 세레스 파우나	NNP
 세실리아	NNP
 세아	NNP
@@ -608,6 +650,7 @@
 소나기	NNP
 소라	NNP
 소라호시 키라메	NNP
+소믈리에	NNP
 소우	NNP
 소우야 이치카	NNP
 송미아	NNP
@@ -616,6 +659,7 @@
 수브딱	NNP
 수장	NNP
 수하	NNP
+수학귀신	NNP
 쉑	NNP
 슈바슈바	NNP
 슈퍼네네치	NNP
@@ -637,10 +681,13 @@
 스즈키 마사루	NNP
 스즈하라	NNP
 스즈하라 루루	NNP
+스칼레	NNP
+스칼렛	NNP
 스코	NNP
 스코야	NNP
 스코야 카나	NNP
 스탬프도둑	NNP
+스텔라	NNP
 스파챠	NNP
 스펠렁키	NNP
 스플래툰	NNP
@@ -653,6 +700,7 @@
 시계 눈나	NNP
 시계누나	NNP
 시계눈나	NNP
+시계우흥	NNP
 시구레	NNP
 시노부	NNP
 시누나	NNP
@@ -721,6 +769,7 @@
 아먀먀	NNP
 아먀미야	NNP
 아메	NNP
+아메무메	NNP
 아멜리아	NNP
 아미미야	NNP
 아반루나	NNP
@@ -728,6 +777,7 @@
 아사노	NNP
 아사노 루리	NNP
 아사라미	NNP
+아사코요	NNP
 아사히나 아카네	NNP
 아스마	NNP
 아스텔	NNP
@@ -740,6 +790,7 @@
 아이돌부	NNP
 아이리스	NNP
 아이바 우이하	NNP
+아이언마우스	NNP
 아즈림	NNP
 아즈마	NNP
 아즈마 림	NNP
@@ -749,10 +800,14 @@
 아카리	NNP
 아카이 하아토	NNP
 아코	NNP
+아쿠땅	NNP
 아쿠마	NNP
+아쿠스이	NNP
 아쿠시아	NNP
+아쿠시오	NNP
 아쿠아	NNP
 아쿠아크루	NNP
+아쿠카나	NNP
 아쿠킨	NNP
 아크	NNP
 아크아	NNP
@@ -766,6 +821,7 @@
 아토리 코토코	NNP
 아틔시	NNP
 아티시	NNP
+악셀	NNP
 악시아	NNP
 악취시	NNP
 안게	NNP
@@ -774,6 +830,7 @@
 알로에	NNP
 알루에트	NNP
 알스트로에메리아	NNP
+알테아	NNP
 알테어	NNP
 암사자	NNP
 암컷무브	NNP
@@ -782,7 +839,7 @@
 액시아 크로네	NNP
 앱랜드	NNP
 야겜좌	NNP
-야고    NNP	
+야고	NNP
 야구루마 리네	NNP
 야다야다	NNP
 야마가미 카루타	NNP
@@ -809,7 +866,7 @@
 언더테일	NNP
 언텔	NNP
 업데이트	NNP
-에고사  NNP	
+에고사	NNP
 에나	NNP
 에네	NNP
 에노구	NNP
@@ -837,6 +894,7 @@
 에일렌	NNP
 에카비라	NNP
 에펙	NNP
+엑셀	NNP
 엑스 에비오	NNP
 엑시아	NNP
 엔도우	NNP
@@ -882,6 +940,7 @@
 오카코로	NNP
 오타비아	NNP
 오토기바라 에라	NNP
+오토하	NNP
 오프파코	NNP
 오하루쥬	NNP
 오하스바	NNP
@@ -892,6 +951,7 @@
 와라베다	NNP
 와라베다 메이지	NNP
 와라와	NNP
+와미	NNP
 와타메	NNP
 와타메이트	NNP
 와타멜론	NNP
@@ -909,6 +969,7 @@
 요미	NNP
 요미나리	NNP
 요스즈	NNP
+요시카	NNP
 요조라 메루	NNP
 요츠하	NNP
 요코	NNP
@@ -918,6 +979,7 @@
 용꼬	NNP
 용사부	NNP
 용하꼬	NNP
+우노	NNP
 우루하 루시아	NNP
 우리딸	NNP
 우리병신	NNP
@@ -927,11 +989,13 @@
 우사다 페코라	NNP
 우시미 이치고	NNP
 우유	NNP
+우유통	NNP
 우이	NNP
 우이 마마	NNP
 우이마마	NNP
 우이하	NNP
 우즈키 코우	NNP
+우츠기	NNP
 우카	NNP
 우타카타 메모리	NNP
 우타코	NNP
@@ -950,6 +1014,8 @@
 유노하라 이즈미	NNP
 유논	NNP
 유니	NNP
+유니콘 이모	NNP
+유니콘이모	NNP
 유루리	NNP
 유메사키	NNP
 유메오	NNP
@@ -969,7 +1035,6 @@
 유키	NNP
 유키나	NNP
 유키민	NNP
-유키민  NNP	
 유키시로 마히로	NNP
 유키하나 라미	NNP
 유튜버	NNP
@@ -1001,6 +1066,7 @@
 이에나가 무기	NNP
 이오리	NNP
 이오피	NNP
+이오피프틴	NNP
 이온	NNP
 이이온나	NNP
 이주인	NNP
@@ -1008,11 +1074,15 @@
 이즈모 카스미	NNP
 이즈미	NNP
 이즈츠	NNP
+이즈키	NNP
 이치고	NNP
 이치미	NNP
 이치카	NNP
 이치카라	NNP
 이토우	NNP
+인니라팡	NNP
+인니우흥	NNP
+인도라팡	NNP
 인어	NNP
 일십백천만	NNP
 임포쟈나이	NNP
@@ -1021,12 +1091,14 @@
 잼민이	NNP
 쟝	NNP
 전투해삼	NNP
+점장	NNP
 정병	NNP
 정병장	NNP
 정병쟝	NNP
 정병쨩	NNP
 제아	NNP
 제타	NNP
+조또	NNP
 조카	NNP
 조토	NNP
 조힘한	NNP
@@ -1038,6 +1110,7 @@
 좆경	NNP
 좆냥이	NNP
 좆미	NNP
+좆의 메아	NNP
 좆지메	NNP
 죠 리키이치	NNP
 주석	NNP
@@ -1051,7 +1124,9 @@
 진짜진짜	NNP
 진짜천사	NNP
 짝귀	NNP
+짭네네	NNP
 짭레나	NNP
+짭로하	NNP
 짭상어	NNP
 짱	NNP
 짱깨안경	NNP
@@ -1062,23 +1137,35 @@
 찐따	NNP
 찐모미	NNP
 찐텐	NNP
+찬캐	NNP
+찬케	NNP
 찹쌀떡	NNP
 채아라	NNP
 챠로	NNP
 챠아카	NNP
 챠이카	NNP
+챤캐	NNP
 챤케	NNP
 천 하 포 무	NNP
 천황	NNP
+철쥐	NNP
 청소부	NNP
 초이	NNP
 초코	NNP
+초코센	NNP
 초코센세	NNP
 초쿄	NNP
 초쿄센세	NNP
+촌장	NNP
 총수	NNP
+총장	NNP
+쵸코	NNP
+쵸코센	NNP
+쵸코센세	NNP
 쵸키	NNP
 츠구	NNP
+츠나	NNP
+츠나상	NNP
 츠노마키	NNP
 츠노마키 와타메	NNP
 츠무구	NNP
@@ -1099,6 +1186,7 @@
 치호	NNP
 치호도령	NNP
 치히로	NNP
+칭꼬	NNP
 카가미 하야토장	NNP
 카게루	NNP
 카구야	NNP
@@ -1107,6 +1195,7 @@
 카나땅	NNP
 카나스이	NNP
 카나에	NNP
+카나우	NNP
 카나타	NNP
 카나토	NNP
 카나토와	NNP
@@ -1117,6 +1206,7 @@
 카루	NNP
 카루타	NNP
 카모미	NNP
+카미노	NNP
 카스미	NNP
 카시코 마리	NNP
 카에데	NNP
@@ -1157,6 +1247,9 @@
 코야미	NNP
 코오네	NNP
 코왈스키	NNP
+코요	NNP
+코요리	NNP
+코요테	NNP
 코우	NNP
 코죠	NNP
 코코	NNP
@@ -1231,6 +1324,7 @@
 타코	NNP
 타피오카	NNP
 탐정	NNP
+태희	NNP
 턱	NNP
 테마리	NNP
 테에테에	NNP
@@ -1260,6 +1354,7 @@
 틀	NNP
 틀딱	NNP
 틀딱	NNP
+파꼬	NNP
 파도	NNP
 파란아야메	NNP
 파르페	NNP
@@ -1281,6 +1376,7 @@
 팡대	NNP
 팬박스	NNP
 펀딩	NNP
+페넥	NNP
 페도	NNP
 페르미	NNP
 페코	NNP
@@ -1296,8 +1392,11 @@
 펨돔	NNP
 펭귄	NNP
 포루	NNP
+포루카	NNP
+포루코요	NNP
 포무	NNP
 포무 레인퍼프	NNP
+포우포우	NNP
 포켓몬	NNP
 포탈	NNP
 폴가이즈	NNP
@@ -1317,9 +1416,9 @@
 프랑스이모	NNP
 프렌	NNP
 프렌 E 루스타리오	NNP
-플레이  NNP	
-플레이어    NNP	
-플레이팅    NNP	
+플레이	NNP
+플레이어	NNP
+플레이팅	NNP
 플스	NNP
 피나	NNP
 피나나	NNP
@@ -1331,8 +1430,10 @@
 피카미	NNP
 피카츄	NNP
 필하모닉	NNP
+핑라미	NNP
 핑키	NNP
 하꼬	NNP
+하나땅	NNP
 하나린	NNP
 하나바타케 챠이카	NNP
 하네루	NNP
@@ -1373,12 +1474,12 @@
 햇반	NNP
 햇번	NNP
 허니스토	NNP
-헤이민  NNP	
+헤이민	NNP
 현타	NNP
 혐끼	NNP
 혐한	NNP
 혜자	NNP
-호감작  NNP	
+호감작	NNP
 호사카와	NNP
 호쇼	NNP
 호쇼 마린	NNP
@@ -1455,99 +1556,37 @@ Kㅣ리누키	NNP
 kmnz	NNP
 kotoko	NNP
 KOTOKO	NNP
+kson	NNP
 La+	NNP
+MUS1CA	NNP
 namirin	NNP
 pp천사	NNP
 PP천사	NNP
 pp텐시	NNP
 PP텐시	NNP
 Teamates	NNP
-VerseN  NNP	
+VerseN	NNP
 WAH	NNP
 watamelon	NNP
 YuNi	NNP
 ぽ	NNP
-공포의군주	NNP
-나나모나	NNP
-이즈키	NNP
-우노	NNP
-세라	NNP
-오토하	NNP
-노보코	NNP
-초코센	NNP
-쵸코	NNP
-쵸코센세	NNP
-쵸코센	NNP
-구타라	NNP
-와미	NNP
-포루코요	NNP
-코요리	NNP
-핑라미	NNP
-아사코요	NNP
-코요	NNP
-점장	NNP
-챤캐	NNP
-찬케	NNP
-찬캐	NNP
-짭로하	NNP
-총장	NNP
-kson	NNP
-촌장	NNP
-소믈리에	NNP
-파꼬	NNP
-린네	NNP
-칭꼬	NNP
-레이토	NNP
-카미노	NNP
-스텔라	NNP
-마도카	NNP
-보라하꼬	NNP
-사키	NNP
-하나땅	NNP
-꽃이모	NNP
-무앙	NNP
-아이언마우스	NNP
-철쥐	NNP
-베리	NNP
-요시카	NNP
-고구마	NNP
-좆의 메아	NNP
-알테아	NNP
-루굴이	NNP
-네크로맨서	NNP
-나즈나	NNP
-미리쿠룬	NNP
-미리리	NNP
-루루리카	NNP
-리쿠무	NNP
-카나우	NNP
-MUS1CA	NNP
-츠나	NNP
-로켓이모	NNP
-로켓 이모	NNP
-유니콘이모	NNP
-유니콘 이모	NNP
-무기	NNP
-수학귀신	NNP
-김치구사	NNP
-짭네네	NNP
-조또	NNP
-스칼레	NNP
-스칼렛	NNP
-강도	NNP
-메루키스	NNP
-리카	NNP
-무키로제	NNP
-아쿠땅	NNP
-네포라보	NNP
-루이클로	NNP
-코요테	NNP
-교수님	NNP
-나유타	NNP
-아메무메	NNP
-시계우흥	NNP
-태희	NNP
-인도라팡	NNP
-인니라팡	NNP
-이오피프틴	NNP
-인니우흥	NNP
+미치코	NNP
+구치코	NNP
+치코리타	NNP
+호시요미	NNP
+스파챠요미	NNP
+세리프요미	NNP
+미시로	NNP
+타쿠마	NNP
+유즈루	NNP
+키라라	NNP
+쿠루미자와	NNP
+이나리	NNP
+라이온하트	NNP
+네코제노	NNP
+오이우유	NNP
+오이 우유	NNP
+서울 우유	NNP
+서울우유	NNP
+가루 우유	NNP
+의 우유	NNP
