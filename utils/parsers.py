@@ -570,11 +570,15 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                 return
             intro = post_page.json(strict=False)[0]["view_info"]
             view = post_page.json(strict=False)[0]["view_main"]
-            post_content = view["memo"]  #글 내용
+            #글 내용
+            post_content = view["memo"]  
+            #작성자 IP
             post_ip = intro["user_id"] if len(
-                intro["ip"]) == 0 else intro["ip"]  #작성자 IP
-            mobile = False if intro["write_type"] == "W" else True  #모바일 체크
-            recom = False if intro["recommend_chk"] == "N" else True  #개념글 체크
+                intro["ip"]) == 0 else intro["ip"]
+            #모바일 체크
+            mobile = not intro["write_type"] == "W"
+            #개념글 체크
+            recom = not intro["recommend_chk"] == "N"  
             post_page.close()
             break
         except (requests.exceptions.RequestException, requests.Timeout) as e:
@@ -597,14 +601,14 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
     #댓글
     reply_page = 1
     total_comment = 0
-    pass_nickname = "deleted"
-    pass_ip = "deleted"
     total_page = 1
 
     # TODO(pixelhowl): Need to refactor this
     while reply_page <= total_page:
         comment_encode_url = f"{DCINSIDE_URL}/comment_new.php?id={GALLARY_NAME}&no={page_num}&re_page={reply_page}&app_id={app_id}"
         mobile_url = f"{DCINSIDE_URL}/redirect.php?hash={interpret_url(comment_encode_url)}%3D%3D"
+        pass_nickname = "deleted"
+        pass_ip = "deleted"
         for trial_count in range(SESSION_RETRIAL_COUNT):
             try:
                 comment_page = SESSION.get(mobile_url,
@@ -613,23 +617,18 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                 comment = comment_page.json(strict=False)[0]
                 total_page = int(comment["total_page"])
                 for comm in comment["comment_list"]:
-                    if not ("ipData" in comm.keys()):
-                        comm["ipData"] = ""
-                    if "under_step" in comm.keys():
-                        target = "%s (%s)" % (pass_nickname, pass_ip)
+                    has_ipData = not "ipData" in comm
+                    if "under_step" in comm:
+                        target = f"{pass_nickname} ({pass_ip})"
                     else:
                         pass_nickname = comm["name"]
-                        pass_ip = comm["user_id"] if len(
-                            comm["ipData"]) == 0 else comm["ipData"]
+                        pass_ip = comm["user_id"] if has_ipData else comm["ipData"]
                         target = None
-                    IP = comm["user_id"] if len(
-                        comm["ipData"]) == 0 else comm["ipData"]
-                    dccon = True if "dccon" in comm.keys() else False
-                    removed_by_writer = False
-                    if "is_delete_flag" in comm and "작성자" in comm[
-                            "is_delete_flag"]:
-                        removed_by_writer = True
-                    content = comm["comment_memo"] if not dccon else comm[
+                    IP = comm["user_id"] if has_ipData and len(comm["ipData"]) else comm["ipData"]
+                    has_dccon = "dccon" in comm
+                    removed_by_writer = "is_delete_flag" in comm and "작성자" in comm[
+                            "is_delete_flag"]
+                    content = comm["comment_memo"] if not has_dccon else comm[
                         "dccon"]
 
                     comment_list.append({
@@ -639,7 +638,7 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                         "ID/IP": IP,
                         "idtype": comm["member_icon"],
                         "content": content,
-                        "dccon": dccon,
+                        "dccon": has_dccon,
                         "답글 대상": target,
                         "댓삭 당한 횟수": removed_by_writer
                     })
