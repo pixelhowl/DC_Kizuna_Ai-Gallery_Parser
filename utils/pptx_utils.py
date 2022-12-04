@@ -9,6 +9,7 @@ import re
 from pptx.util import Cm, Inches, Pt
 from pptx.dml.color import RGBColor
 from utils import parsers
+from utils import youtube
 import pandas as pd
 import os
 
@@ -18,6 +19,7 @@ TEMPLATE_MONTH = 7
 
 MONTH_PATTERN = r"[0-9]+월"
 COUNT_PATTERN = "("
+VIDEO_COUNT_PATTERN = r"[0-9]+회"
 INCREASE_PATTERN = r"▼|▲|■|NEW"
 LOGGER = parsers.LOGGER
 
@@ -53,6 +55,8 @@ def replace_texts_with_diff_color(paragraph, target_texts, colors):
 
 
 def gen_barlength(data):
+    if not "총 언급 횟수" in data.columns:
+        return None
     standard = data.loc[1, "총 언급 횟수"]
     barlength = 18.56 / standard
     barlengths = [18.56]
@@ -78,7 +82,7 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
             rectangles.append(shape)
         elif shape.name.find("TextBox") != -1:
             textboxes.append(shape)
-        elif shape.name.find("그림") != -1 or shape.name.find("Picture") != -1:
+        elif shape.name.find("그림") != -1 or shape.name.find("Picture") != -1 or shape.name.find("Rank") != -1:
             pictures.append(shape)
 
     textboxes.sort(key=lambda x: x.top, reverse=False)
@@ -112,17 +116,26 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
                                          "키즈나 아이"]["단어(언급 수)"].values[0]
                 LOGGER.info(detail_count_text)
             else:
-                detail_count_text = data.loc[count_idx + 1, "단어(언급 수)"]
                 count_idx += 1
+                detail_count_text = data.loc[count_idx, "단어(언급 수)"]
             text_frame = shape.text_frame
             p = text_frame.paragraphs[0]
             if len(detail_count_text) > 44:
                 detail_count_text = detail_count_text[:44] + "..."
             replace_text_only(p, detail_count_text, color)
+        elif re.search(VIDEO_COUNT_PATTERN, whole_text) is not None:
+            video_id = data.index[count_idx]
+            detail_count_text = str(data.loc[video_id, "Count"]) + " 회"
+            count_idx += 1
+            text_frame = shape.text_frame
+            p = text_frame.paragraphs[0]
+            replace_text_only(p, detail_count_text, color)
+            
         LOGGER.info(
             f"{shape.name} leftx: {shape.left}, topy:{shape.top}, width:{shape.width}, height:{shape.height}, text: {whole_text}"
         )
-
+    
+    count_idx = 0
     LOGGER.info("pic------")
     for shape in pictures:
         LOGGER.info(
@@ -133,7 +146,18 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
         width = shape.width
         height = shape.height
         # Replace image:shape.width = barlengths[count_idx]
-        if slide_num == 0 and shape.name == "그림 8":
+        shape_name = str(shape.name)
+        if shape_name.find("Rank") != -1:
+            rank_num = int(shape_name.split("Rank")[1])
+            if slide_num == 4:
+                video_id = data.index[rank_num-1]
+                pic_dir = f"{parsers.VIDEO_THUMBNAIL_DIR}/{video_id}.png"
+                replace_picture(TEMPLATE.slides[slide_num], shape, pic_dir)
+            else:
+                vtuber_name = data.loc[rank_num, "Vtuber"]
+                pic_dir = f"{youtube.PROFILE_PIC_DIR}/{vtuber_name}.png"
+                replace_picture(TEMPLATE.slides[slide_num], shape, pic_dir)
+        elif slide_num == 0 and shape.name == "그림 8":
             replace_picture(TEMPLATE.slides[slide_num], shape,
                             f"{parsers.CUR_DIR}/wordcloud.png")
 
