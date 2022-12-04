@@ -1590,3 +1590,5 @@ YuNi	NNP
 서울우유	NNP
 가루 우유	NNP
 의 우유	NNP
+셀리나	NNP
+오이지펠트	NNP
