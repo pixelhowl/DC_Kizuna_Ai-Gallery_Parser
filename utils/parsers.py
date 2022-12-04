@@ -56,6 +56,7 @@ PREV_DIR = os.path.abspath(f"./{GALLARY_NAME}/{PREV_YEAR}/{PREV_MONTH}/")
 
 POST_FILE = os.path.join(CUR_DIR, POST_FILENAME)
 COMMENT_FILE = os.path.join(CUR_DIR, COMMENT_FILENAME)
+VIDEO_THUMBNAIL_DIR = os.path.join(CUR_DIR, "thumbnail")
 
 # 단어 추출 전역 변수
 USER_DICT_FILE = os.path.join(HOME, 'utils', "user_dict.txt")

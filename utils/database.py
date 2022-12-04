@@ -32,6 +32,7 @@ def generate_db_directory():
     table_str = 'table'
     word_str = 'word'
     dccon_str = 'dccon'
+    thumbnail_str = 'thumbnail'
 
     for year in range(START_YEAR, END_YEAR + 1):  # 년도 폴더 생성
         for month in range(1, 12 + 1):  #1~12월 폴더 생성
@@ -39,11 +40,14 @@ def generate_db_directory():
                 f'{HOME}/{GALLARY_NAME}/{year}/{month}/')
             table_dir = os.path.join(base_dir, table_str)
             word_dir = os.path.join(base_dir, word_str)
-            word_dir = os.path.join(base_dir, dccon_str)
+            dccon_dir = os.path.join(base_dir, dccon_str)
+            video_thumbnail_dir = os.path.join(base_dir, thumbnail_str)
 
             os.makedirs(base_dir, exist_ok=True)
             os.makedirs(table_dir, exist_ok=True)
             os.makedirs(word_dir, exist_ok=True)
+            os.makedirs(dccon_dir, exist_ok=True)
+            os.makedirs(video_thumbnail_dir, exist_ok=True)
 
             if not os.path.isfile(parsers.POST_FILE):
                 pd.DataFrame(columns=POST_COL_NAME).to_json(parsers.POST_FILE,
