@@ -7,4 +7,5 @@ __pycache__
 wordcloud.png
 *.gif
 *.pptx
+*.png
 !template.pptx
