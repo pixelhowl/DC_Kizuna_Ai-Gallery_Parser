@@ -1,0 +1,12 @@
+beautifulsoup4==4.11.1
+gevent==21.8.0
+JPype1==1.4.1
+konlpy==0.6.0
+numpy==1.23.1
+pandas==1.4.4
+Pillow==9.3.0
+python_pptx==0.6.21
+ray==2.0.0
+requests==2.28.1
+tqdm==4.64.1
+wordcloud==1.8.2.2
