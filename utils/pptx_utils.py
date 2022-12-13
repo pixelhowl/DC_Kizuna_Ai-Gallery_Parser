@@ -1,18 +1,15 @@
-import pptx
-
-from utils import pptx_utils
-from pptx import Presentation
-from pptx.chart.data import ChartData
-import pandas as pd
+"""PPT automation"""
 import os
 import re
-from pptx.util import Cm, Inches, Pt
-from pptx.dml.color import RGBColor
-from utils import parsers
-from utils import youtube
-import pandas as pd
-import os
 
+# pylint: disable=protected-access, unused-variable, logging-fstring-interpolation
+import pandas as pd
+from pptx import Presentation
+# from pptx.chart.data import ChartData
+from pptx.dml.color import RGBColor
+from pptx.util import Cm
+
+from utils import parsers, youtube
 
 TEMPLATE = Presentation("./utils/template.pptx")
 TEMPLATE_MONTH = 7
@@ -82,7 +79,8 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
             rectangles.append(shape)
         elif shape.name.find("TextBox") != -1:
             textboxes.append(shape)
-        elif shape.name.find("그림") != -1 or shape.name.find("Picture") != -1 or shape.name.find("Rank") != -1:
+        elif shape.name.find("그림") != -1 or shape.name.find(
+                "Picture") != -1 or shape.name.find("Rank") != -1:
             pictures.append(shape)
 
     textboxes.sort(key=lambda x: x.top, reverse=False)
@@ -106,7 +104,7 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
         elif re.search(MONTH_PATTERN, whole_text) is not None:
             target_text = whole_text.replace(str(TEMPLATE_MONTH),
                                              str(cur_month))
-            
+
             text_frame = shape.text_frame
             p = text_frame.paragraphs[0]
             replace_text_only(p, target_text, color)
@@ -130,11 +128,11 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
             text_frame = shape.text_frame
             p = text_frame.paragraphs[0]
             replace_text_only(p, detail_count_text, color)
-            
+
         LOGGER.info(
             f"{shape.name} leftx: {shape.left}, topy:{shape.top}, width:{shape.width}, height:{shape.height}, text: {whole_text}"
         )
-    
+
     count_idx = 0
     LOGGER.info("pic------")
     for shape in pictures:
@@ -150,7 +148,7 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
         if shape_name.find("Rank") != -1:
             rank_num = int(shape_name.split("Rank")[1])
             if slide_num == 4:
-                video_id = data.index[rank_num-1]
+                video_id = data.index[rank_num - 1]
                 pic_dir = f"{parsers.VIDEO_THUMBNAIL_DIR}/{video_id}.png"
                 replace_picture(TEMPLATE.slides[slide_num], shape, pic_dir)
             else:
@@ -197,5 +195,6 @@ def update_slide(slide_num, filename, *, cur_month=parsers.CUR_MONTH):
             f"{shape.name} leftx: {shape.left}, topy:{shape.top}, width:{shape.width}, height:{shape.height}, text: {whole_text}"
         )
 
+
 def save_ppt():
-    TEMPLATE.save(f'{parsers.CUR_DIR}/{parsers.CUR_MONTH}월 통계.pptx')
+    TEMPLATE.save(f"{parsers.CUR_DIR}/{parsers.CUR_MONTH}월 통계.pptx")

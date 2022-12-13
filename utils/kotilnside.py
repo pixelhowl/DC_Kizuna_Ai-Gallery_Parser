@@ -1,11 +1,14 @@
+"""Kotlinside related function"""
 import os
 
-import jpype  # pip3 install JPype1
+import jpype
 
-from . import *
+from . import KOTLIN_HOME
 
 os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
 CLASS_PATH = KOTLIN_HOME + "/KotlinInside-1.14.6-fat.jar"
+
+# pylint: disable=too-many-function-args
 
 
 def run_once(f):
@@ -21,11 +24,9 @@ def run_once(f):
 
 @run_once
 def jvm_init():
-    jpype.startJVM(
-        jpype.getDefaultJVMPath(),
-        "-Djava.class.path={classpath}".format(classpath=CLASS_PATH),
-        convertStrings=True,
-    )
+    jpype.startJVM(jpype.getDefaultJVMPath(),
+                   f"-Djava.class.path={CLASS_PATH}",
+                   convertStrings=True)
 
 
 def get_auth():
@@ -41,14 +42,11 @@ def get_auth():
 
 
 def generate_app_id(auth):
-    hashedAppKey = auth.generateHashedAppKey()
-    app_id = auth.fetchAppId(hashedAppKey)
+    hased_app_key = auth.generateHashedAppKey()
+    app_id = auth.fetchAppId(hased_app_key)
     return app_id
 
 
 def jvm_shutdown():
-    jpype.shutdownJVM(
-        jpype.getDefaultJVMPath(),
-        "-Djava.class.path={classpath}".format(classpath=CLASS_PATH),
-        convertStrings=True,
-    )
+    jpype.shutdownJVM(jpype.getDefaultJVMPath(),
+                      f"-Djava.class.path={CLASS_PATH}")

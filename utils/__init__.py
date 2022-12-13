@@ -1,3 +1,4 @@
+"""utils to parse DCINSIDE package"""
 import datetime
 import os
 
@@ -15,4 +16,5 @@ WORD_DAY_FILENAME = "_day.json"
 WORD_NIGHT_FILENAME = "_night.json"
 DCINSIDE_URL = "http://m.dcinside.com/api"
 
-from . import kotilnside, parsers, database, vtuber_dict, word_dict, youtube, pptx_utils
+from . import (database, kotilnside, parsers, pptx_utils, vtuber_dict,
+               word_dict, youtube)

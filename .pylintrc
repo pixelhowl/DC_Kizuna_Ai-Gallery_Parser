@@ -149,7 +149,9 @@ disable=abstract-method,
         wrong-import-position,
         line-too-long,
         missing-function-docstring,
+        missing-class-docstring,
         too-many-locals,
+        missing-module-docstring
 
 
 [REPORTS]

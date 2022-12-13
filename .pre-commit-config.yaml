@@ -21,7 +21,7 @@ repos:
   hooks:
     - id: pylint
       name: pylint
-      entry: pylint
+      entry: /home/chanho/anaconda3/envs/ai/bin/pylint
       language: system
       types: [python]
       args:
