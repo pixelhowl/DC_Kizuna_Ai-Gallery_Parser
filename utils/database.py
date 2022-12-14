@@ -1,9 +1,10 @@
 """Save releated"""
+import datetime
 import os
 
 import pandas as pd
 
-from . import END_YEAR, GALLARY_NAME, HOME, START_YEAR, parsers
+from . import parsers, paths, strings
 
 # pylint: disable=singleton-comparison
 
@@ -15,6 +16,30 @@ COMMENT_COL_NAME = [
     "번호", "날짜", "닉네임", "ID/IP", "dccon", "content", "idtype", "답글 대상",
     "댓삭 당한 횟수"
 ]
+
+
+def get_year_month(in_year=None, in_month=None):
+    year = datetime.datetime.now().year if in_year is None else in_year
+    month = datetime.datetime.now().month - 1 if in_month is None else in_month
+    return year, month
+
+
+def get_prev_year_month(in_year=None, in_month=None):
+    year, month = get_year_month(in_year, in_month)
+
+    if month == 1:
+        prev_month = 12
+        prev_year = year - 1
+    else:
+        prev_month = month - 1
+
+    return prev_year, prev_month
+
+
+def get_data_dir(in_year=None, in_month=None, *, return_prev=False):
+    year_func = get_prev_year_month if return_prev else get_year_month
+    year, month = year_func(in_year, in_month)
+    return f"{paths.HOME}/{strings.GALLARY_NAME}/{year}/{month}/"
 
 
 def get_post_df():
@@ -33,20 +58,15 @@ def get_post_and_content_df():
     return post_df, comment_df
 
 
-def generate_db_directory():
-    table_str = "table"
-    word_str = "word"
-    dccon_str = "dccon"
-    thumbnail_str = "thumbnail"
-
-    for year in range(START_YEAR, END_YEAR + 1):  # 년도 폴더 생성
+def generate_db_directory(start_year=2022, end_year=2022):
+    for year in range(start_year, end_year + 1):  # 년도 폴더 생성
         for month in range(1, 12 + 1):  #1~12월 폴더 생성
-            base_dir = os.path.abspath(
-                f"{HOME}/{GALLARY_NAME}/{year}/{month}/")
-            table_dir = os.path.join(base_dir, table_str)
-            word_dir = os.path.join(base_dir, word_str)
-            dccon_dir = os.path.join(base_dir, dccon_str)
-            video_thumbnail_dir = os.path.join(base_dir, thumbnail_str)
+            base_dir = get_data_dir(year, month)
+            table_dir = os.path.join(base_dir, paths.TABLE_DIRNAME)
+            word_dir = os.path.join(base_dir, paths.WORD_DIRNAME)
+            dccon_dir = os.path.join(base_dir, paths.DCCON_DIRNAME)
+            video_thumbnail_dir = os.path.join(base_dir,
+                                               paths.THUMBNAIL_DIRNAME)
 
             os.makedirs(base_dir, exist_ok=True)
             os.makedirs(table_dir, exist_ok=True)
@@ -64,7 +84,7 @@ def generate_db_directory():
 
 def remove_and_save_html_content_in_post_df():
     post_df = pd.read_json(parsers.POST_FILE)
-    remove_html_content_in_df(post_df, "content")
+    remove_html_content_in_df(post_df, strings.CONTENT_ROWNAME)
     post_df.to_json(parsers.POST_FILE, force_ascii=False)
 
 

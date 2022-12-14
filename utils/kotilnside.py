@@ -3,10 +3,10 @@ import os
 
 import jpype
 
-from . import KOTLIN_HOME
+from . import paths, strings
 
-os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
-CLASS_PATH = KOTLIN_HOME + "/KotlinInside-1.14.6-fat.jar"
+os.environ["JAVA_HOME"] = paths.JAVA_HOME
+CLASS_PATH = f"{paths.KOTLIN_HOME}/{paths.KOTLIN_FILENAME}"
 
 # pylint: disable=too-many-function-args
 
@@ -25,18 +25,20 @@ def run_once(f):
 @run_once
 def jvm_init():
     jpype.startJVM(jpype.getDefaultJVMPath(),
-                   f"-Djava.class.path={CLASS_PATH}",
+                   strings.JAVA_PATH_ARGS,
                    convertStrings=True)
 
 
 def get_auth():
     jvm_init()
-    kotlininside = jpype.JPackage("be.zvz.kotlininside")
+    kotlininside = jpype.JPackage(strings.KOTLININSIDE_PACKAGE_NAME)
     user = kotlininside.session.user.Anonymous
     inside = kotlininside.KotlinInside
     http = kotlininside.http.DefaultHttpClient
 
-    _ = inside.createInstance(user("ㅇㅇ", "zhxmfflsakstp"), http(True, True))
+    _ = inside.createInstance(
+        user(strings.KOTLININSIDE_USERNAME, strings.KOTLININSIDE_PASSWORD),
+        http(True, True))
     auth = kotlininside.security.Auth()
     return auth
 
@@ -48,5 +50,4 @@ def generate_app_id(auth):
 
 
 def jvm_shutdown():
-    jpype.shutdownJVM(jpype.getDefaultJVMPath(),
-                      f"-Djava.class.path={CLASS_PATH}")
+    jpype.shutdownJVM(jpype.getDefaultJVMPath(), strings.JAVA_PATH_ARGS)

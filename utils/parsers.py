@@ -26,57 +26,19 @@ import wordcloud
 # import kiwipiepy
 from tqdm.notebook import tqdm
 
-from . import (COMMENT_FILENAME, CUR_MONTH, CUR_YEAR, DCINSIDE_URL,
-               GALLARY_NAME, HOME, POST_FILENAME, WORD_DAY_FILENAME, WORD_DIR,
-               WORD_NIGHT_FILENAME, database, kotilnside, logging, vtuber_dict)
+from . import (database, kotilnside, logging, paths, strings, vtuber_dict,
+               word_dict)
 
 # pylint: disable=protected-access, unused-variable, use-implicit-booleaness-not-len
 # pylint: disable=logging-fstring-interpolation, singleton-comparison
 # pylint: disable=consider-using-f-string, logging-not-lazy, broad-except
 # pylint: disable=bare-except
 
-# 로깅
-LOGGER = logging.LOGGER
-
 # 웹 크롤링을 위한 전역 변수
-DELETE_URL = r"\uae00\uc5c6\uc74c"
 SESSION = requests.Session()
 SESSION_TIMEOUT = 5
 SESSION_RETRIAL_COUNT = 5
 TRIAL_WITH_APP_ID = 300
-
-CUR_DIR = os.path.abspath(f"./{GALLARY_NAME}/{CUR_YEAR}/{CUR_MONTH}/")
-PREV_YEAR = CUR_YEAR
-PREV_MONTH = CUR_MONTH - 1
-if CUR_MONTH == 1:
-    PREV_MONTH = 12
-    PREV_YEAR = CUR_YEAR - 1
-PREV_DIR = os.path.abspath(f"./{GALLARY_NAME}/{PREV_YEAR}/{PREV_MONTH}/")
-
-POST_FILE = os.path.join(CUR_DIR, POST_FILENAME)
-COMMENT_FILE = os.path.join(CUR_DIR, COMMENT_FILENAME)
-VIDEO_THUMBNAIL_DIR = os.path.join(CUR_DIR, "thumbnail")
-
-# 단어 추출 전역 변수
-USER_DICT_FILE = os.path.join(HOME, "utils", "user_dict.txt")
-CONDA_PREFIX = os.getenv("CONDA_PREFIX")
-if CONDA_PREFIX is None:
-    raise RuntimeError("Please setup with conda and konlpy")
-CUSTOM_DICTFILE = f"{CONDA_PREFIX}/lib/python3.8/site-packages/konlpy/java/data/kE/dic_user.txt"
-
-SETENCE_FILTER = []
-WORD_FILTER = [
-    "!!!", ".com", ".kr", ".co", ".be", "!!", "A1", "A2", "E8", "E3", "DU",
-    "QE", "175", "M44", "WY", "-2", "E3", ".jp", "M4", "-5", "-4", "A9", "00",
-    "B1", "E7", "A4", "B4", "-1", "B7", "RY", "B6", "P2", "A3", "D6", "DI",
-    "A1", "M1", "5D", "-D", "C3", "-0", "B2", "T8", "A7", "H1", "X5", "S3",
-    "PE", "I3", "S6", "E4", "-3", ".tv", ".net"
-]
-DCCON_FILTER = []
-DCCON_REGEX = r"(https?://)?(www\.)?dcimg[0-9]\.dcinside\.com\/dccon\.php\?no=[a-z0-9]+"
-YOUTUBE_REGEX = r"(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})"
-
-TAGS_ID = "NNP"
 
 # 랭킹 전역 변수
 TOP_NUM = 10
@@ -85,8 +47,10 @@ BAR_MAX_NUM = 18.56
 
 class ContentCounter():
 
-    def __init__(self, tags_df_file):
-        self.userdict_df = pd.read_csv(USER_DICT_FILE,
+    def __init__(self, tags_df_file, *, year=None, month=None):
+        self.year, self.month = database.get_year_month(year, month)
+        self.data_dir = database.get_data_dir(self.year, self.month)
+        self.userdict_df = pd.read_csv(paths.USERDICT_FILE,
                                        names=["단어", "품사"],
                                        index_col=None,
                                        sep="\t")
@@ -101,17 +65,17 @@ class ContentCounter():
 
     def copy_custom_dict(self):
         if self.copy_user_dict_flag:
-            shutil.copy(USER_DICT_FILE, CUSTOM_DICTFILE)
+            shutil.copy(paths.USERDICT_FILE, paths.CUSTOMDICT_FILE)
 
     def add_custom_word_to_dict(self):
         # 자동 사전 단어 추가 vtuber_dict.py에만 추가하면 됨
         for _, nicknames in tqdm(vtuber_dict.vtuber.items(),
                                  desc="Updating custom dictionary"):
             for nickname in nicknames:
-                nickname_list = [nickname, TAGS_ID]
+                nickname_list = [nickname, strings.TAGS_ID]
                 if not self.userdict_df["단어"].isin(nickname_list).any():
                     self.userdict_df.loc[len(self.userdict_df)] = nickname_list
-        self.userdict_df.to_csv(USER_DICT_FILE,
+        self.userdict_df.to_csv(paths.USERDICT_FILE,
                                 header=False,
                                 index=False,
                                 sep="\t")
@@ -122,11 +86,11 @@ class ContentCounter():
 
     def get_analyzer(self):
         self.set_custom_dict()
-        analyzer = konlpy.tag.Komoran(userdic=USER_DICT_FILE)
+        analyzer = konlpy.tag.Komoran(userdic=paths.USERDICT_FILE)
         return analyzer
 
     def setence_parser(self, sentence):
-        no_youtube_sentence = re.sub(YOUTUBE_REGEX, "", sentence)
+        no_youtube_sentence = re.sub(strings.YOUTUBE_REGEX, "", sentence)
         no_encoded_lf_setence = no_youtube_sentence.replace("\\n", "\n")
         setence_array = []
         for str_piece in no_encoded_lf_setence.split("\n"):
@@ -143,15 +107,15 @@ class ContentCounter():
         try:
             nouns = self.analyzer.nouns(parsed_sentence)
         except Exception as e:
-            LOGGER.info(f"error: {e}, content: {parsed_sentence}")
+            logging.LOGGER.info(f"error: {e}, content: {parsed_sentence}")
         return nouns
         # tokens = ANALYER.tokenize(parsed_sentence)
         # nouns = [t for t in tokens if t.tag.startswith("NN")]
         # return nouns
 
     def tagging(self, content):
-        if len(SETENCE_FILTER) != 0 and any(word in content
-                                            for word in SETENCE_FILTER):
+        if len(word_dict.SETENCE_FILTER) != 0 and any(
+                word in content for word in word_dict.SETENCE_FILTER):
             return
 
         nouns = self.dict_extract_nouns(content)
@@ -182,7 +146,7 @@ class ContentCounter():
             line_str = str(line)
             self.tagging(line_str)
 
-        word_file = os.path.join(CUR_DIR, WORD_DIR,
+        word_file = os.path.join(self.data_dir, paths.WORD_DIRNAME,
                                  f"{str(timeline.day)}{word_file_name}")
         # FIXME(pixelhowl): async writing
         with open(word_file, "w", encoding=self.encoding) as f:
@@ -197,13 +161,15 @@ class ContentCounter():
 
     def get_total_word_dict(self):
         words = []
-        last_day = calendar.monthrange(CUR_YEAR, CUR_MONTH)[1]
+        last_day = calendar.monthrange(self.year, self.month)[1]
 
         for beg in range(1, last_day + 1):
-            day_file_path = os.path.join(CUR_DIR, WORD_DIR,
-                                         f"{str(beg)}{WORD_DAY_FILENAME}")
-            night_file_path = os.path.join(CUR_DIR, WORD_DIR,
-                                           f"{str(beg)}{WORD_NIGHT_FILENAME}")
+            day_file_path = os.path.join(
+                self.data_dir, paths.WORD_DIRNAME,
+                f"{str(beg)}{paths.WORD_DAY_FILENAME}")
+            night_file_path = os.path.join(
+                self.data_dir, paths.WORD_DIRNAME,
+                f"{str(beg)}{paths.WORD_NIGHT_FILENAME}")
 
             with open(day_file_path, encoding=self.encoding) as f:
                 json_file = dict(json.load(f))
@@ -225,8 +191,8 @@ class ContentCounter():
         content_df = database.get_content_df()
         content_df["날짜"] = pd.to_datetime(content_df["날짜"], format="%Y.%m.%d")
 
-        first_timeline = f"{CUR_YEAR}-{CUR_MONTH}"
-        last_timeline = f"{CUR_YEAR}-{CUR_MONTH+1}" if CUR_MONTH != 12 else f"{CUR_YEAR+1}-1"
+        first_timeline = f"{self.year}-{self.month}"
+        last_timeline = f"{self.year}-{self.month+1}" if self.month != 12 else f"{self.year+1}-1"
 
         for cur_timeline in tqdm(pd.date_range(first_timeline,
                                                last_timeline,
@@ -247,11 +213,11 @@ class ContentCounter():
             afternoon_to_night_cond = (time_cond_df["날짜"] >= afternoon_time
                                        ) & (time_cond_df["날짜"] < night_time)
             time_conds = [day_to_afternoon_cond, afternoon_to_night_cond]
-            file_names = [WORD_DAY_FILENAME, WORD_NIGHT_FILENAME]
+            file_names = [paths.WORD_DAY_FILENAME, paths.WORD_NIGHT_FILENAME]
             self.tagging_with_timelines(time_cond_df, time_conds, file_names,
                                         cur_timeline)
 
-        vtbuer_post_comment_file = os.path.join(CUR_DIR,
+        vtbuer_post_comment_file = os.path.join(self.data_dir,
                                                 "total_post_count.csv")
         vtbuer_post_comment_df = pd.DataFrame(
             self.vtuber_post_comment_counter.items(),
@@ -265,7 +231,7 @@ class ContentCounter():
 
         tags_dict = self.get_total_word_dict()
         tags_df = pd.DataFrame(tags_dict.items(), columns=["단어", "언급 수"])
-        tags_df = tags_df[~tags_df["단어"].isin(WORD_FILTER)]
+        tags_df = tags_df[~tags_df["단어"].isin(word_dict.WORD_FILTER)]
         tags_df.sort_values(by=["언급 수"], ascending=False, inplace=True)
         result = tags_df.reset_index(drop=True)
         result.index = result.index + 1
@@ -282,10 +248,10 @@ class YoutubeCounter():
     def yotube_rank(self):
         content_df = database.get_content_df()
         youtube_df = content_df[content_df["제목내용"].str.contains(
-            YOUTUBE_REGEX, na=False, regex=True)][["제목내용"]]
+            strings.YOUTUBE_REGEX, na=False, regex=True)][["제목내용"]]
 
-        yt_regex_id = ray.put(YOUTUBE_REGEX)
-        youtube_rank_file = os.path.join(CUR_DIR, "youtube.csv")
+        yt_regex_id = ray.put(strings.YOUTUBE_REGEX)
+        youtube_rank_file = os.path.join(self.data_dir, "youtube.csv")
 
         if os.path.isfile(youtube_rank_file):
             yt_df = pd.read_csv(youtube_rank_file, index_col=None)
@@ -311,7 +277,7 @@ class YoutubeCounter():
             query = urlparse.urlparse(value)
             if query.hostname == "youtu.be":
                 return query.path[1:]
-            if query.hostname in ("www.youtube.com", "youtube.com"):
+            if query.hostname in strings.YOUTUBE_URL_TUPLE:
                 if query.path == "/watch?app=desktop":
                     p = query.path.split()
                 if query.path == "/watch":
@@ -377,72 +343,80 @@ class YoutubeCounter():
 
     def run(self):
         self.yotube_rank()
-        LOGGER.info("yotube_rank finished.")
+        logging.LOGGER.info("yotube_rank finished.")
 
 
 class WordRanker():
 
-    def __init__(self, use_cache=True):
-        self.savefolder = CUR_DIR
-        self.encoder = "utf8"
-        self.tags_df_file = os.path.join(CUR_DIR, "total_count.csv")
+    def __init__(self, *, year=None, month=None, use_cache=True):
+        self.year, self.month = database.get_year_month(year, month)
+        self.data_dir = database.get_data_dir(self.year, self.month)
+        self.prev_data_dir = database.get_data_dir(self.year,
+                                                   self.month,
+                                                   return_prev=True)
+        self.post_file = os.path.join(self.data_dir, paths.POST_FILENAME)
+        self.comment_file = os.path.join(self.data_dir, paths.COMMENT_FILENAME)
+        self.tags_df_file = os.path.join(self.data_dir,
+                                         paths.TOTALTAGS_FILENAME)
         if use_cache and os.path.isfile(self.tags_df_file):
-            LOGGER.info("Using cached tags...")
+            logging.LOGGER.info("Using cached tags...")
             tags_df = pd.read_csv(self.tags_df_file, index_col=0)
             self.word_dict = tags_df.set_index("단어").to_dict()["언급 수"]
         else:
-            LOGGER.info("Generate with cotent_counter...")
+            logging.LOGGER.info("Generate with cotent_counter...")
             self.content_counter = ContentCounter(self.tags_df_file)
             self.word_dict = self.content_counter.run()
 
     def word_cloud(self):
-        for word in WORD_FILTER:
+        for word in word_dict.WORD_FILTER:
             self.word_dict.pop(word, None)
 
-        maskfile = np.array(
-            PIL.Image.open(os.path.join(HOME, "utils", "ai.jpg")))
-        wc = wordcloud.WordCloud(
-            font_path=r"/mnt/c/Windows/Fonts/BMDOHYEON_ttf.ttf",
-            mode="RGBA",
-            background_color=None,
-            max_words=1000,
-            mask=maskfile,
-            prefer_horizontal=1,
-            min_font_size=0,
-            max_font_size=150,
-            width=1398.425197,
-            height=2116.535433,
-            scale=5).generate_from_frequencies(self.word_dict)
+        maskfile = np.array(PIL.Image.open(paths.WORDCLOUD_FILE))
+        wc = wordcloud.WordCloud(font_path=paths.FONT_FILE,
+                                 mode="RGBA",
+                                 background_color=None,
+                                 max_words=1000,
+                                 mask=maskfile,
+                                 prefer_horizontal=1,
+                                 min_font_size=0,
+                                 max_font_size=150,
+                                 width=1398.425197,
+                                 height=2116.535433,
+                                 scale=5).generate_from_frequencies(
+                                     self.word_dict)
         image_colors = wordcloud.ImageColorGenerator(maskfile)
-        wc.recolor(color_func=image_colors,
-                   random_state=0).to_file(f"{CUR_DIR}/wordcloud.png")
-        LOGGER.info("Word cloud generated.")
+        wc.recolor(color_func=image_colors, random_state=0).to_file(
+            f"{self.data_dir}/{paths.WORDCLOUD_SAVE_FILENAME}")
+        logging.LOGGER.info("Word cloud generated.")
 
     def dccon_downloader(self, rank, dccon_url):
         response = SESSION.get(dccon_url)
         dccon_filename = f"{rank}.gif"
-        dccon_file = os.path.join(CUR_DIR, "dccon", dccon_filename)
+        dccon_file = os.path.join(self.data_dir, paths.DCCON_DIRNAME,
+                                  dccon_filename)
         with open(dccon_file, "wb") as f:
             f.write(response.content)
             f.close()
         response.close()
 
     def dccon_rank(self):
-        comment_df = pd.read_json(COMMENT_FILE)
+        comment_df = pd.read_json(self.comment_file)
         comment_df = comment_df[comment_df["dccon"] == True]
         dccons_counter = comment_df["content"].value_counts()
 
-        dccon_count_file = os.path.join(CUR_DIR, "dccon_rank.csv")
+        dccon_count_file = os.path.join(self.data_dir,
+                                        paths.DCCONRANK_FILENAME)
         dccon_count_df = pd.DataFrame(dccons_counter.items(),
                                       columns=["디시콘", "사용 수"])
         dccon_count_df.sort_values(by=["사용 수"], ascending=False, inplace=True)
         result = dccon_count_df.reset_index(drop=True)
         result.index = result.index + 1
         result.to_csv(dccon_count_file)
-        LOGGER.info("dccon_rank finished.")
+        logging.LOGGER.info("dccon_rank finished.")
 
     def dccon_download(self):
-        dccon_count_file = os.path.join(CUR_DIR, "dccon_rank.csv")
+        dccon_count_file = os.path.join(self.data_dir,
+                                        paths.DCCONRANK_FILENAME)
         dccon_df = pd.read_csv(dccon_count_file, index_col=0)
 
         for idx, row in dccon_df.head(n=10).iterrows():
@@ -450,14 +424,14 @@ class WordRanker():
             dccon_url = row["디시콘"]
             self.dccon_downloader(rank, dccon_url)
 
-        LOGGER.info("dccon_download finished.")
+        logging.LOGGER.info("dccon_download finished.")
 
     def word_rank(self, vtuber_name_dict, output_filename):
         log = []
-        if not os.path.exists(self.savefolder):
-            os.makedirs(self.savefolder)
+        if not os.path.exists(self.data_dir):
+            os.makedirs(self.data_dir)
 
-        writer_path = os.path.join(self.savefolder, output_filename)
+        writer_path = os.path.join(self.data_dir, output_filename)
 
         for vtuber in vtuber_name_dict:
             total_call = 0
@@ -486,21 +460,23 @@ class WordRanker():
 
         new_data.index = np.arange(1, len(new_data) + 1)
         try:
-            old_data = pd.read_csv(os.path.join(PREV_DIR, output_filename))
+            old_data = pd.read_csv(
+                os.path.join(self.prev_data_dir, output_filename))
         except:
             old_data = None
 
         standard = new_data.iat[0, 2]
         barlength = BAR_MAX_NUM / standard
-        LOGGER.debug(f"new_data: {new_data}")
+        logging.LOGGER.debug(f"new_data: {new_data}")
         for i in range(1, TOP_NUM):
-            LOGGER.debug(f"{i+1}번째 바 길이: {new_data.iat[i,2]*barlength}")
+            logging.LOGGER.debug(
+                f"{i+1}번째 바 길이: {new_data.iat[i,2]*barlength}")
         if old_data is not None:
             out_vtuber_df = old_data.head(n=TOP_NUM)[~old_data["Vtuber"].head(
                 n=TOP_NUM).isin(new_data["Vtuber"].head(n=TOP_NUM))]
             out_vtuber_list = new_data[new_data["Vtuber"].isin(
                 out_vtuber_df["Vtuber"])]
-            LOGGER.info(f"Top{TOP_NUM}에서 사라진: {out_vtuber_list}")
+            logging.LOGGER.info(f"Top{TOP_NUM}에서 사라진: {out_vtuber_list}")
 
         compared_ranks = []
         for idx, member in new_data.iterrows():
@@ -529,11 +505,11 @@ class WordRanker():
         result.to_csv(writer_path, sep=",", index=True)
 
     def run(self):
-        self.word_rank(vtuber_dict.nijisanji, "sum_niji.csv")
-        self.word_rank(vtuber_dict.hololive, "sum_holo.csv")
-        self.word_rank(vtuber_dict.vtuber, "sum_ai.csv")
-        self.word_rank(vtuber_dict.exceptholo, "sum_noholo.csv")
-        LOGGER.info("word_rank finished.")
+        self.word_rank(vtuber_dict.nijisanji, paths.NIJIRANK_FILENAME)
+        self.word_rank(vtuber_dict.hololive, paths.HOLORANK_FILENAME)
+        self.word_rank(vtuber_dict.vtuber, paths.VTUBERRANK_FILENAME)
+        self.word_rank(vtuber_dict.exceptholo, paths.NOHOLORANK_FILENAME)
+        logging.LOGGER.info("word_rank finished.")
 
 
 def interpret_url(url):
@@ -550,21 +526,22 @@ def get_app_id(auth):
         str: dcinisde 모바일 app id 값
     """
     app_id = kotilnside.generate_app_id(auth)
-    LOGGER.info("Get app_id=%s" % app_id)
+    logging.LOGGER.info("Get app_id=%s" % app_id)
     return app_id
 
 
 def get_html(page_num, app_id, post_list, comment_list):  #글 수집
-    post_encode_url = f"{DCINSIDE_URL}/gall_view_new.php?id={GALLARY_NAME}&no={page_num}&app_id={app_id}"
-    page_url = f"{DCINSIDE_URL}/redirect.php?hash={interpret_url(post_encode_url)}"
-    headers = {"User-Agent": "dcinside.app"}
+    post_encode_url = strings.DCINSIDE_PAGE_URL.format(page_num=page_num,
+                                                       app_id=app_id)
+    page_url = strings.DCINSIDE_MOBILE_URL.format(
+        hash=interpret_url(post_encode_url))
 
     for trial_count in range(SESSION_RETRIAL_COUNT):
         try:
             post_page = SESSION.get(page_url,
-                                    headers=headers,
+                                    headers=strings.DCINSIDE_HEADER,
                                     timeout=SESSION_TIMEOUT)
-            if DELETE_URL in post_page.text or "글없음" in post_page.text:
+            if strings.DELETE_URL in post_page.text or "글없음" in post_page.text:
                 post_page.close()
                 return
             intro = post_page.json(strict=False)[0]["view_info"]
@@ -584,13 +561,13 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
             pass
         except Exception as e:
             if "NotFound" in post_page.text and "404" in post_page.text:
-                LOGGER.info(
+                logging.LOGGER.info(
                     f"Post Trial: {trial_count}, break with 404 NotFound Error, content: {post_page.text}"
                 )
                 break
             if not ("<!DOCTYPE html>" in post_page.text
                     or post_page.text == ""):
-                LOGGER.info(
+                logging.LOGGER.info(
                     f"Post Trial: {trial_count}, post_number: {page_num} , error: {str(e)}, content: {post_page.text}"
                 )
             post_page.close()
@@ -604,14 +581,16 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
 
     # TODO(pixelhowl): Need to refactor this
     while reply_page <= total_page:
-        comment_encode_url = f"{DCINSIDE_URL}/comment_new.php?id={GALLARY_NAME}&no={page_num}&re_page={reply_page}&app_id={app_id}"
-        mobile_url = f"{DCINSIDE_URL}/redirect.php?hash={interpret_url(comment_encode_url)}%3D%3D"
+        comment_encode_url = strings.DCINSIDE_COMMENT_URL.format(
+            page_num=page_num, reply_page=reply_page, app_id=app_id)
+        mobile_url = strings.DCINISDE_MOBILE_COMMENT_URL.format(
+            hash=interpret_url(comment_encode_url))
         pass_nickname = "deleted"
         pass_ip = "deleted"
         for trial_count in range(SESSION_RETRIAL_COUNT):
             try:
                 comment_page = SESSION.get(mobile_url,
-                                           headers=headers,
+                                           headers=strings.DCINSIDE_HEADER,
                                            timeout=5)
                 comment = comment_page.json(strict=False)[0]
                 total_page = int(comment["total_page"])
@@ -650,13 +629,13 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                 comment = {"comment_list": []}
             except Exception as e:
                 if "\"message\":\"Not Found\"" in comment_page.text and "\"status\":404" in comment_page.text:
-                    LOGGER.info(
+                    logging.LOGGER.info(
                         f"Comment Trial: {trial_count}, post_number: {page_num}, break with 404 NotFound Error, content: {comment_page.text}"
                     )
                     comment = {"comment_list": []}
                 if not ("<!DOCTYPE html>" in comment_page.text
                         or comment_page.text == ""):
-                    LOGGER.info(
+                    logging.LOGGER.info(
                         f"Comment Trial: {trial_count}, post_number: {page_num} , error: {str(e)}, content: {comment_page.text}"
                     )
                 comment_page.close()
@@ -681,8 +660,10 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
     })
 
 
-def get_prev_month_last_page():
-    prev_post_file = os.path.join(PREV_DIR, POST_FILENAME)
+def get_prev_month_last_page(prev_data_dir=None):
+    if prev_data_dir is None:
+        prev_data_dir = database.get_data_dir(return_prev=True)
+    prev_post_file = os.path.join(prev_data_dir, paths.POST_FILENAME)
     post_df = pd.read_json(prev_post_file)
     if len(post_df):
         last_page = post_df["번호"].max()
@@ -696,20 +677,20 @@ def run_web_crawler(start_page_num, end_page_num):
     if start_page_num is None:
         start_page_num = get_prev_month_last_page()
 
-    LOGGER.info("Get Auth class from KotlinInside.")
+    logging.LOGGER.info("Get Auth class from KotlinInside.")
     auth = kotilnside.get_auth()
-    LOGGER.info("Create gevent pool.")
+    logging.LOGGER.info("Create gevent pool.")
     pool = gevent.pool.Pool()
 
-    LOGGER.info("Read post dataframe from %s" % POST_FILE)
-    post_df = pd.read_json(POST_FILE)
-    LOGGER.info("Read comment dataframe from %s" % POST_FILE)
-    comment_df = pd.read_json(COMMENT_FILE)
+    logging.LOGGER.info("Read post dataframe from %s" % paths.POST_FILENAME)
+    post_df = pd.read_json(paths.POST_FILENAME)
+    logging.LOGGER.info("Read comment dataframe from %s" % paths.POST_FILENAME)
+    comment_df = pd.read_json(paths.COMMENT_FILENAME)
     app_id = get_app_id(auth)
 
     for cur_page_num in tqdm(range(start_page_num, end_page_num,
                                    TRIAL_WITH_APP_ID),
-                             desc=f"{GALLARY_NAME} Webcrawling..."):
+                             desc=f"{strings.GALLARY_NAME} Webcrawling..."):
         post_list = []
         comment_list = []
 
@@ -725,21 +706,21 @@ def run_web_crawler(start_page_num, end_page_num):
 
         pool.join()
 
-        LOGGER.info("Process %s posts", len(post_list))  # 수집 글 갯수
+        logging.LOGGER.info("Process %s posts", len(post_list))  # 수집 글 갯수
 
         if len(post_list) > 0:
             pd.concat([post_df, pd.DataFrame(post_list)],
                       sort=False).reset_index(drop=True).to_json(
-                          POST_FILE, force_ascii=False)
-            post_df = pd.read_json(POST_FILE)
+                          paths.POST_FILENAME, force_ascii=False)
+            post_df = pd.read_json(paths.POST_FILENAME)
 
             app_id = get_app_id(auth)
 
         if len(comment_list) > 0:
             pd.concat([comment_df, pd.DataFrame(comment_list)],
                       sort=False).reset_index(drop=True).to_json(
-                          COMMENT_FILE, force_ascii=False)
-            comment_df = pd.read_json(COMMENT_FILE)
+                          paths.COMMENT_FILENAME, force_ascii=False)
+            comment_df = pd.read_json(paths.COMMENT_FILENAME)
 
-    LOGGER.info("Do post processing to dataframe")
+    logging.LOGGER.info("Do post processing to dataframe")
     database.post_processing_df()
