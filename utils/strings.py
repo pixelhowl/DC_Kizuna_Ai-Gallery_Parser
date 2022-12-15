@@ -9,7 +9,7 @@ JAVA_PATH_ARGS = "-Djava.class.path={CLASS_PATH}"
 CONDA_PREFIX = "CONDA_PREFIX"
 
 TAGS_ID = "NNP"
-ECONDER = "UTF-8"
+ENCODER = "UTF-8"
 
 CONTENT_ROWNAME = "content"
 

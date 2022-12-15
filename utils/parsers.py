@@ -61,7 +61,6 @@ class ContentCounter():
         self.tags = collections.defaultdict(int)
         self.vtuber_post_comment_counter = collections.defaultdict(int)
         self.tags_df_file = tags_df_file
-        self.encoding = "UTF-8"
 
     def copy_custom_dict(self):
         if self.copy_user_dict_flag:
@@ -149,7 +148,7 @@ class ContentCounter():
         word_file = os.path.join(self.data_dir, paths.WORD_DIRNAME,
                                  f"{str(timeline.day)}{word_file_name}")
         # FIXME(pixelhowl): async writing
-        with open(word_file, "w", encoding=self.encoding) as f:
+        with open(word_file, "w", encoding=strings.ENCODER) as f:
             json.dump(self.tags.copy(), f, ensure_ascii=False)
 
         self.tags = collections.defaultdict(int)
@@ -171,11 +170,11 @@ class ContentCounter():
                 self.data_dir, paths.WORD_DIRNAME,
                 f"{str(beg)}{paths.WORD_NIGHT_FILENAME}")
 
-            with open(day_file_path, encoding=self.encoding) as f:
+            with open(day_file_path, encoding=strings.ENCODER) as f:
                 json_file = dict(json.load(f))
                 words.append(json_file)
 
-            with open(night_file_path, encoding=self.encoding) as f:
+            with open(night_file_path, encoding=strings.ENCODER) as f:
                 json_file = dict(json.load(f))
                 words.append(json_file)
 
@@ -241,9 +240,13 @@ class ContentCounter():
 
 class YoutubeCounter():
 
-    def __init__(self):
+    def __init__(self, *, year=None, month=None):
+        self.set_data_dir(year, month)
         self.columns = ["ChannelName", "VideoID", "Count"]
         ray.init()
+
+    def set_data_dir(self, year, month):
+        self.data_dir = database.get_data_dir(year, month)
 
     def yotube_rank(self):
         content_df = database.get_content_df()
@@ -251,7 +254,7 @@ class YoutubeCounter():
             strings.YOUTUBE_REGEX, na=False, regex=True)][["제목내용"]]
 
         yt_regex_id = ray.put(strings.YOUTUBE_REGEX)
-        youtube_rank_file = os.path.join(self.data_dir, "youtube.csv")
+        youtube_rank_file = os.path.join(self.data_dir, paths.YOUTUBE_FILENAME)
 
         if os.path.isfile(youtube_rank_file):
             yt_df = pd.read_csv(youtube_rank_file, index_col=None)
@@ -349,22 +352,30 @@ class YoutubeCounter():
 class WordRanker():
 
     def __init__(self, *, year=None, month=None, use_cache=True):
+        self.use_cache = use_cache
+        self.set_word_dict(year, month)
+
+    def set_word_dict(self, year, month):
         self.year, self.month = database.get_year_month(year, month)
         self.data_dir = database.get_data_dir(self.year, self.month)
         self.prev_data_dir = database.get_data_dir(self.year,
                                                    self.month,
                                                    return_prev=True)
+
         self.post_file = os.path.join(self.data_dir, paths.POST_FILENAME)
         self.comment_file = os.path.join(self.data_dir, paths.COMMENT_FILENAME)
         self.tags_df_file = os.path.join(self.data_dir,
                                          paths.TOTALTAGS_FILENAME)
-        if use_cache and os.path.isfile(self.tags_df_file):
+
+        if self.use_cache and os.path.isfile(self.tags_df_file):
             logging.LOGGER.info("Using cached tags...")
             tags_df = pd.read_csv(self.tags_df_file, index_col=0)
             self.word_dict = tags_df.set_index("단어").to_dict()["언급 수"]
         else:
             logging.LOGGER.info("Generate with cotent_counter...")
-            self.content_counter = ContentCounter(self.tags_df_file)
+            self.content_counter = ContentCounter(self.tags_df_file,
+                                                  year=self.year,
+                                                  month=self.month)
             self.word_dict = self.content_counter.run()
 
     def word_cloud(self):
@@ -673,9 +684,13 @@ def get_prev_month_last_page(prev_data_dir=None):
     return last_page
 
 
-def run_web_crawler(start_page_num, end_page_num):
+def run_web_crawler(start_page_num, end_page_num, *, year=None, month=None):
     if start_page_num is None:
         start_page_num = get_prev_month_last_page()
+    data_dir = database.get_data_dir(year, month)
+
+    postfile_path = os.path.join(data_dir, paths.POST_FILENAME)
+    commentfile_path = os.path.join(data_dir, paths.COMMENT_FILENAME)
 
     logging.LOGGER.info("Get Auth class from KotlinInside.")
     auth = kotilnside.get_auth()
@@ -683,9 +698,10 @@ def run_web_crawler(start_page_num, end_page_num):
     pool = gevent.pool.Pool()
 
     logging.LOGGER.info("Read post dataframe from %s" % paths.POST_FILENAME)
-    post_df = pd.read_json(paths.POST_FILENAME)
-    logging.LOGGER.info("Read comment dataframe from %s" % paths.POST_FILENAME)
-    comment_df = pd.read_json(paths.COMMENT_FILENAME)
+    post_df = pd.read_json(postfile_path)
+    logging.LOGGER.info("Read comment dataframe from %s" %
+                        paths.COMMENT_FILENAME)
+    comment_df = pd.read_json(commentfile_path)
     app_id = get_app_id(auth)
 
     for cur_page_num in tqdm(range(start_page_num, end_page_num,
@@ -711,16 +727,16 @@ def run_web_crawler(start_page_num, end_page_num):
         if len(post_list) > 0:
             pd.concat([post_df, pd.DataFrame(post_list)],
                       sort=False).reset_index(drop=True).to_json(
-                          paths.POST_FILENAME, force_ascii=False)
-            post_df = pd.read_json(paths.POST_FILENAME)
+                          postfile_path, force_ascii=False)
+            post_df = pd.read_json(postfile_path)
 
             app_id = get_app_id(auth)
 
         if len(comment_list) > 0:
             pd.concat([comment_df, pd.DataFrame(comment_list)],
                       sort=False).reset_index(drop=True).to_json(
-                          paths.COMMENT_FILENAME, force_ascii=False)
-            comment_df = pd.read_json(paths.COMMENT_FILENAME)
+                          commentfile_path, force_ascii=False)
+            comment_df = pd.read_json(commentfile_path)
 
     logging.LOGGER.info("Do post processing to dataframe")
     database.post_processing_df()
