@@ -1,7 +1,7 @@
 """Global paths"""
 import os
 
-from .strings import CONDA_PREFIX
+from .strings import CONDA_PREFIX, GALLARY_NAME
 
 UTILS_DIRNAME = "utils"
 WORD_DIRNAME = "word"
@@ -14,6 +14,7 @@ KONLPY_USERDICT_FILENAME = "lib/python3.8/site-packages/konlpy/java/data/kE/dic_
 KOTLIN_FILENAME = "KotlinInside-1.14.6-fat.jar"
 POST_FILENAME = "post.json"
 COMMENT_FILENAME = "comment.json"
+DUPCHECK_FILENAME = "dup_check.csv"
 WORD_DAY_FILENAME = "_day.json"
 WORD_NIGHT_FILENAME = "_night.json"
 WORDCLOUD_SRC_FILENAME = "ai.jpg"
@@ -32,11 +33,16 @@ HOME = os.path.abspath("./")
 KOTLIN_HOME = os.path.abspath("../KotlinInside/build/libs")
 JAVA_HOME = "/usr/lib/jvm/java-8-openjdk-amd64"
 PROFILEPIC_DIR = os.path.join(HOME, UTILS_DIRNAME, PROFILEPIC_DIRNAME)
+CLASS_PATH = f"{KOTLIN_HOME}/{KOTLIN_FILENAME}"
+DB_PATH = f"{HOME}/{GALLARY_NAME}"
+
 CONDA_PREFIX = os.getenv(CONDA_PREFIX)
 if CONDA_PREFIX is None:
     raise RuntimeError("Please setup with conda and konlpy")
+
 CUSTOMDICT_FILE = f"{CONDA_PREFIX}/{KONLPY_USERDICT_FILENAME}"
 WORDCLOUD_FILE = os.path.join(HOME, UTILS_DIRNAME, WORDCLOUD_SRC_FILENAME)
 USERDICT_FILE = os.path.join(HOME, UTILS_DIRNAME, USERDICT_FILENAME)
 POWERPOINT_FILE = os.path.join(HOME, UTILS_DIRNAME, TEMPLATE_FILENAME)
+DUPCHECK_FILE = os.path.join(DB_PATH, DUPCHECK_FILENAME)
 FONT_FILE = "/mnt/c/Windows/Fonts/BMDOHYEON_ttf.ttf"

@@ -38,7 +38,7 @@ from . import (database, kotilnside, logging, paths, strings, vtuber_dict,
 SESSION = requests.Session()
 SESSION_TIMEOUT = 5
 SESSION_RETRIAL_COUNT = 5
-TRIAL_WITH_APP_ID = 300
+TRIAL_WITH_APP_ID = 200
 
 # 랭킹 전역 변수
 TOP_NUM = 10
@@ -187,8 +187,9 @@ class ContentCounter():
         return words_dict
 
     def run(self):
-        content_df = database.get_content_df()
-        content_df["날짜"] = pd.to_datetime(content_df["날짜"], format="%Y.%m.%d")
+        content_df = database.get_content_df(self.year, self.month)
+        content_df[strings.DATE_ROWNAME] = pd.to_datetime(
+            content_df[strings.DATE_ROWNAME], format="%Y.%m.%d %H:%M")
 
         first_timeline = f"{self.year}-{self.month}"
         last_timeline = f"{self.year}-{self.month+1}" if self.month != 12 else f"{self.year+1}-1"
@@ -202,15 +203,18 @@ class ContentCounter():
             afternoon_time = cur_timeline + datetime.timedelta(hours=12)
             night_time = cur_timeline + datetime.timedelta(hours=24)
 
-            day_to_night_cond = (content_df["날짜"] >=
-                                 day_time) & (content_df["날짜"] < night_time)
+            day_to_night_cond = (content_df[strings.DATE_ROWNAME] >=
+                                 day_time) & (content_df[strings.DATE_ROWNAME]
+                                              < night_time)
 
             time_cond_df = content_df[day_to_night_cond]
 
-            day_to_afternoon_cond = (time_cond_df["날짜"] >= day_time) & (
-                time_cond_df["날짜"] < afternoon_time)
-            afternoon_to_night_cond = (time_cond_df["날짜"] >= afternoon_time
-                                       ) & (time_cond_df["날짜"] < night_time)
+            day_to_afternoon_cond = (
+                time_cond_df[strings.DATE_ROWNAME] >= day_time) & (
+                    time_cond_df[strings.DATE_ROWNAME] < afternoon_time)
+            afternoon_to_night_cond = (
+                time_cond_df[strings.DATE_ROWNAME] >= afternoon_time) & (
+                    time_cond_df[strings.DATE_ROWNAME] < night_time)
             time_conds = [day_to_afternoon_cond, afternoon_to_night_cond]
             file_names = [paths.WORD_DAY_FILENAME, paths.WORD_NIGHT_FILENAME]
             self.tagging_with_timelines(time_cond_df, time_conds, file_names,
@@ -537,7 +541,7 @@ def get_app_id(auth):
         str: dcinisde 모바일 app id 값
     """
     app_id = kotilnside.generate_app_id(auth)
-    logging.LOGGER.info("Get app_id=%s" % app_id)
+    logging.LOGGER.debug("Get app_id=%s" % app_id)
     return app_id
 
 
@@ -563,9 +567,9 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
             post_ip = intro["user_id"] if len(
                 intro["ip"]) == 0 else intro["ip"]
             #모바일 체크
-            mobile = not intro["write_type"] == "W"
+            mobile = intro["write_type"] != "W"
             #개념글 체크
-            recom = not intro["recommend_chk"] == "N"
+            recom = intro["recommend_chk"] != "N"
             post_page.close()
             break
         except (requests.exceptions.RequestException, requests.Timeout) as e:
@@ -596,8 +600,7 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
             page_num=page_num, reply_page=reply_page, app_id=app_id)
         mobile_url = strings.DCINISDE_MOBILE_COMMENT_URL.format(
             hash=interpret_url(comment_encode_url))
-        pass_nickname = "deleted"
-        pass_ip = "deleted"
+        pass_nickname = pass_ip = "deleted"
         for trial_count in range(SESSION_RETRIAL_COUNT):
             try:
                 comment_page = SESSION.get(mobile_url,
@@ -606,27 +609,32 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                 comment = comment_page.json(strict=False)[0]
                 total_page = int(comment["total_page"])
                 for comm in comment["comment_list"]:
-                    has_ip_data = not "ipData" in comm
-                    if "under_step" in comm:
-                        target = f"{pass_nickname} ({pass_ip})"
-                    else:
-                        pass_nickname = comm["name"]
-                        pass_ip = comm["user_id"] if has_ip_data else comm[
-                            "ipData"]
-                        target = None
-                    ip = comm["user_id"] if has_ip_data and len(
-                        comm["ipData"]) else comm["ipData"]
+                    has_ip_data = "ipData" in comm
+                    id_or_ip = comm["ipData"] if has_ip_data and len(
+                        comm["ipData"]) else comm["user_id"]
+
                     has_dccon = "dccon" in comm
                     removed_by_writer = "is_delete_flag" in comm and "작성자" in comm[
                         "is_delete_flag"]
+
+                    if "under_step" in comm:
+                        target = f"{pass_nickname} ({pass_ip})"
+                    else:
+                        if removed_by_writer:
+                            pass_nickname = pass_ip = "deleted"
+                        else:
+                            pass_nickname = comm["name"]
+                            pass_ip = id_or_ip
+                        target = ""
+
                     content = comm["comment_memo"] if not has_dccon else comm[
                         "dccon"]
 
                     comment_list.append({
-                        "번호": page_num,
-                        "날짜": comm["date_time"],
+                        "번호": int(page_num),
+                        strings.DATE_ROWNAME: comm["date_time"],
                         "닉네임": comm["name"],
-                        "ID/IP": ip,
+                        "ID/IP": id_or_ip,
                         "idtype": comm["member_icon"],
                         "content": content,
                         "dccon": has_dccon,
@@ -657,7 +665,7 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
     post_list.append({
         "번호": page_num,
         "제목": intro["subject"],
-        "날짜": intro["date_time"],
+        strings.DATE_ROWNAME: intro["date_time"],
         "닉네임": intro["name"],
         "ID/IP": post_ip,
         "idtype": intro["member_icon"],
@@ -684,24 +692,15 @@ def get_prev_month_last_page(prev_data_dir=None):
     return last_page
 
 
-def run_web_crawler(start_page_num, end_page_num, *, year=None, month=None):
+def run_web_crawler(start_page_num, end_page_num):
     if start_page_num is None:
         start_page_num = get_prev_month_last_page()
-    data_dir = database.get_data_dir(year, month)
-
-    postfile_path = os.path.join(data_dir, paths.POST_FILENAME)
-    commentfile_path = os.path.join(data_dir, paths.COMMENT_FILENAME)
-
+    dup_check_df = pd.read_csv(paths.DUPCHECK_FILE, index_col=None).astype(int)
     logging.LOGGER.info("Get Auth class from KotlinInside.")
     auth = kotilnside.get_auth()
     logging.LOGGER.info("Create gevent pool.")
     pool = gevent.pool.Pool()
 
-    logging.LOGGER.info("Read post dataframe from %s" % paths.POST_FILENAME)
-    post_df = pd.read_json(postfile_path)
-    logging.LOGGER.info("Read comment dataframe from %s" %
-                        paths.COMMENT_FILENAME)
-    comment_df = pd.read_json(commentfile_path)
     app_id = get_app_id(auth)
 
     for cur_page_num in tqdm(range(start_page_num, end_page_num,
@@ -711,32 +710,20 @@ def run_web_crawler(start_page_num, end_page_num, *, year=None, month=None):
         comment_list = []
 
         next_page_num = cur_page_num + TRIAL_WITH_APP_ID
-
         if next_page_num > end_page_num:
             next_page_num = end_page_num + 1
 
         for page_num in range(cur_page_num, next_page_num):
-            if page_num in post_df["번호"].values:
+            if page_num in dup_check_df["번호"].values:
+                logging.LOGGER.debug(f"{page_num} exists so skip.")
                 continue
             pool.spawn(get_html, page_num, app_id, post_list, comment_list)
 
         pool.join()
 
-        logging.LOGGER.info("Process %s posts", len(post_list))  # 수집 글 갯수
-
         if len(post_list) > 0:
-            pd.concat([post_df, pd.DataFrame(post_list)],
-                      sort=False).reset_index(drop=True).to_json(
-                          postfile_path, force_ascii=False)
-            post_df = pd.read_json(postfile_path)
-
+            logging.LOGGER.info("Process %s posts", len(post_list))  # 수집 글 갯수
             app_id = get_app_id(auth)
 
-        if len(comment_list) > 0:
-            pd.concat([comment_df, pd.DataFrame(comment_list)],
-                      sort=False).reset_index(drop=True).to_json(
-                          commentfile_path, force_ascii=False)
-            comment_df = pd.read_json(commentfile_path)
-
-    logging.LOGGER.info("Do post processing to dataframe")
-    database.post_processing_df()
+        database.update_and_save_df(paths.POST_FILENAME, post_list)
+        database.update_and_save_df(paths.COMMENT_FILENAME, comment_list)
