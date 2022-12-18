@@ -5,8 +5,7 @@ import jpype
 
 from . import paths, strings
 
-os.environ["JAVA_HOME"] = paths.JAVA_HOME
-CLASS_PATH = f"{paths.KOTLIN_HOME}/{paths.KOTLIN_FILENAME}"
+os.environ["JAVA_HOME"] = paths.CLASS_PATH
 
 # pylint: disable=too-many-function-args
 
@@ -25,7 +24,7 @@ def run_once(f):
 @run_once
 def jvm_init():
     jpype.startJVM(jpype.getDefaultJVMPath(),
-                   strings.JAVA_PATH_ARGS,
+                   strings.JAVA_PATH_ARGS.format(CLASS_PATH=paths.CLASS_PATH),
                    convertStrings=True)
 
 
@@ -50,4 +49,4 @@ def generate_app_id(auth):
 
 
 def jvm_shutdown():
-    jpype.shutdownJVM(jpype.getDefaultJVMPath(), strings.JAVA_PATH_ARGS)
+    jpype.shutdownJVM(jpype.getDefaultJVMPath())

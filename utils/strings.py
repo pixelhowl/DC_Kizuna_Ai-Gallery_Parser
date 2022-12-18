@@ -9,9 +9,10 @@ JAVA_PATH_ARGS = "-Djava.class.path={CLASS_PATH}"
 CONDA_PREFIX = "CONDA_PREFIX"
 
 TAGS_ID = "NNP"
-ECONDER = "UTF-8"
+ENCODER = "UTF-8"
 
 CONTENT_ROWNAME = "content"
+DATE_ROWNAME = "날짜"
 
 DCCON_REGEX = r"(https?://)?(www\.)?dcimg[0-9]\.dcinside\.com\/dccon\.php\?no=[a-z0-9]+"
 YOUTUBE_REGEX = r"(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})"
@@ -28,7 +29,7 @@ DCINSIDE_COMMENT_QUERY = DCINSIDE_PAGE_QUERY + "&re_page={reply_page}"
 DCINSIDE_COMMENT_URL = f"{DCINSIDE_URL}/{DCINSIDE_COMMENT_PHP}?{DCINSIDE_COMMENT_QUERY}"
 
 DCINSIDE_MOBILE_URL = f"{DCINSIDE_URL}/{DCINSIDE_REDIRECT_PHP}" + "?hash={hash}"
-DCINISDE_MOBILE_COMMENT_URL = DCINSIDE_PAGE_URL + "%3D%3D"
+DCINISDE_MOBILE_COMMENT_URL = DCINSIDE_MOBILE_URL + "%3D%3D"
 
 YOUTUBE_URL = "https://www.youtube.com/{channel_id}"
 
