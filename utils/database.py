@@ -137,14 +137,15 @@ def get_content_df(year=None, month=None):
     return content_df
 
 
-def generate_db(start_year=2022, end_year=2022):
+def generate_db(start_year=2021, end_year=2022):
     pd.DataFrame(columns=DUPCHECK_COL_NAME,
                  index=None).to_csv(paths.DUPCHECK_FILE, index=False, mode="w")
 
+    # 년도 폴더 생성
     for year in tqdm(range(start_year, end_year + 1),
-                     desc="Building based on year"):  # 년도 폴더 생성
-        for month in tqdm(range(1, 12 + 1),
-                          desc="Building based on month"):  #1~12월 폴더 생성
+                     desc="Building based on year"):
+        #1~12월 폴더 생성,
+        for month in tqdm(range(1, 12 + 1), desc="Building based on month"):
             base_dir = get_data_dir(year, month)
             table_dir = os.path.join(base_dir, paths.TABLE_DIRNAME)
             word_dir = os.path.join(base_dir, paths.WORD_DIRNAME)
@@ -167,6 +168,14 @@ def generate_db(start_year=2022, end_year=2022):
                                                    index=False,
                                                    mode="a",
                                                    header=False)
+    # 0 = 삭제된 글거나 없어진 글들
+    base_dir = get_data_dir(0, 0)
+    post_file = get_df_path(paths.POST_FILENAME, data_dir=base_dir)
+    post_df = try_get_df(post_file)
+    post_df["번호"].drop_duplicates().to_csv(paths.DUPCHECK_FILE,
+                                           index=False,
+                                           mode="a",
+                                           header=False)
 
 
 def remove_and_save_html_content_in_post_df(year, month):
@@ -196,7 +205,10 @@ def update_and_save_df(filename, row_list):
             stop=7)
         year_months = update_df["year_month"].unique()
         for year_month in year_months:
-            year, month = year_month.split(".")
+            if year_month is None:
+                year = month = 0
+            else:
+                year, month = year_month.split(".")
             df_path = get_df_path(filename, year=year, month=month)
             df = get_df(df_path=df_path).astype(dtype)
             new_df = update_df[update_df["year_month"] == year_month].drop(

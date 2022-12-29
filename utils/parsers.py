@@ -6,6 +6,7 @@ import json
 import os
 import re
 import shutil
+import time
 
 import gevent.monkey
 import gevent.pool
@@ -38,7 +39,7 @@ from . import (database, kotilnside, logging, paths, strings, vtuber_dict,
 SESSION = requests.Session()
 SESSION_TIMEOUT = 5
 SESSION_RETRIAL_COUNT = 5
-TRIAL_WITH_APP_ID = 200
+TRIAL_WITH_APP_ID = 800
 
 # 랭킹 전역 변수
 TOP_NUM = 10
@@ -556,11 +557,28 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
             post_page = SESSION.get(page_url,
                                     headers=strings.DCINSIDE_HEADER,
                                     timeout=SESSION_TIMEOUT)
-            if strings.DELETE_URL in post_page.text or "글없음" in post_page.text:
+            intro_json = post_page.json(strict=False)[0]
+            view_json = post_page.json(strict=False)[0]
+            if strings.DELETE_URL in post_page.text or "글없음" in post_page.text or "view_info" not in intro_json:
                 post_page.close()
+                post_list.append({
+                    "번호": page_num,
+                    "제목": None,
+                    strings.DATE_ROWNAME: None,
+                    "닉네임": None,
+                    "ID/IP": None,
+                    "idtype": None,
+                    "조회 수": 0,
+                    "달린 댓글 수": 0,
+                    "추천 수": 0,
+                    "비추 수": 0,
+                    "content": None,
+                    "mobile": None,
+                    "개념글 수": None
+                })
                 return
-            intro = post_page.json(strict=False)[0]["view_info"]
-            view = post_page.json(strict=False)[0]["view_main"]
+            intro = intro_json["view_info"]
+            view = view_json["view_main"]
             #글 내용
             post_content = view["memo"]
             #작성자 IP
@@ -579,7 +597,22 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                 logging.LOGGER.info(
                     f"Post Trial: {trial_count}, break with 404 NotFound Error, content: {post_page.text}"
                 )
-                break
+                post_list.append({
+                    "번호": page_num,
+                    "제목": None,
+                    strings.DATE_ROWNAME: None,
+                    "닉네임": None,
+                    "ID/IP": None,
+                    "idtype": None,
+                    "조회 수": 0,
+                    "달린 댓글 수": 0,
+                    "추천 수": 0,
+                    "비추 수": 0,
+                    "content": None,
+                    "mobile": None,
+                    "개념글 수": None
+                })
+                return
             if not ("<!DOCTYPE html>" in post_page.text
                     or post_page.text == ""):
                 logging.LOGGER.info(
@@ -607,58 +640,68 @@ def get_html(page_num, app_id, post_list, comment_list):  #글 수집
                                            headers=strings.DCINSIDE_HEADER,
                                            timeout=5)
                 comment = comment_page.json(strict=False)[0]
-                total_page = int(comment["total_page"])
-                for comm in comment["comment_list"]:
-                    has_ip_data = "ipData" in comm
-                    id_or_ip = comm["ipData"] if has_ip_data and len(
-                        comm["ipData"]) else comm["user_id"]
-
-                    has_dccon = "dccon" in comm
-                    removed_by_writer = "is_delete_flag" in comm and "작성자" in comm[
-                        "is_delete_flag"]
-
-                    if "under_step" in comm:
-                        target = f"{pass_nickname} ({pass_ip})"
-                    else:
-                        if removed_by_writer:
-                            pass_nickname = pass_ip = "deleted"
-                        else:
-                            pass_nickname = comm["name"]
-                            pass_ip = id_or_ip
-                        target = ""
-
-                    content = comm["comment_memo"] if not has_dccon else comm[
-                        "dccon"]
-
-                    comment_list.append({
-                        "번호": int(page_num),
-                        strings.DATE_ROWNAME: comm["date_time"],
-                        "닉네임": comm["name"],
-                        "ID/IP": id_or_ip,
-                        "idtype": comm["member_icon"],
-                        "content": content,
-                        "dccon": has_dccon,
-                        "답글 대상": target,
-                        "댓삭 당한 횟수": removed_by_writer
-                    })
-                comment_page.close()
-                break
             except (requests.exceptions.RequestException,
                     requests.Timeout) as e:
-                comment = {"comment_list": []}
+                time.sleep(1)
+                continue
             except Exception as e:
                 if "\"message\":\"Not Found\"" in comment_page.text and "\"status\":404" in comment_page.text:
                     logging.LOGGER.info(
                         f"Comment Trial: {trial_count}, post_number: {page_num}, break with 404 NotFound Error, content: {comment_page.text}"
                     )
-                    comment = {"comment_list": []}
+
                 if not ("<!DOCTYPE html>" in comment_page.text
                         or comment_page.text == ""):
                     logging.LOGGER.info(
                         f"Comment Trial: {trial_count}, post_number: {page_num} , error: {str(e)}, content: {comment_page.text}"
                     )
-                comment_page.close()
 
+                comment_page.close()
+                break
+
+            if "total_page" not in comment:
+                break
+
+            total_page = int(comment["total_page"])
+
+            for comm in comment["comment_list"]:
+                has_ip_data = "ipData" in comm
+                id_or_ip = comm["ipData"] if has_ip_data and len(
+                    comm["ipData"]) else comm["user_id"]
+
+                has_dccon = "dccon" in comm
+                removed_by_writer = "is_delete_flag" in comm and "작성자" in comm[
+                    "is_delete_flag"]
+
+                if "under_step" in comm:
+                    target = f"{pass_nickname} ({pass_ip})"
+                else:
+                    if removed_by_writer:
+                        pass_nickname = pass_ip = "deleted"
+                    else:
+                        pass_nickname = comm["name"]
+                        pass_ip = id_or_ip
+                    target = ""
+
+                content = comm["comment_memo"] if not has_dccon else comm[
+                    "dccon"]
+
+                comment_list.append({
+                    "번호": int(page_num),
+                    strings.DATE_ROWNAME: comm["date_time"],
+                    "닉네임": comm["name"],
+                    "ID/IP": id_or_ip,
+                    "idtype": comm["member_icon"],
+                    "content": content,
+                    "dccon": has_dccon,
+                    "답글 대상": target,
+                    "댓삭 당한 횟수": removed_by_writer
+                })
+            comment_page.close()
+            break
+
+        if "comment_list" not in comment:
+            break
         total_comment += len(comment["comment_list"])
         reply_page += 1
 
