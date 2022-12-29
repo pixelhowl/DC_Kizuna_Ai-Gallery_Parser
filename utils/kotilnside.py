@@ -1,13 +1,15 @@
 """Kotlinside related function"""
 import os
+import time
 
 import jpype
 
-from . import paths, strings
+from . import logging, paths, strings
 
 os.environ["JAVA_HOME"] = paths.CLASS_PATH
 
-# pylint: disable=too-many-function-args
+# pylint: disable=too-many-function-args, broad-except
+MAX_TRIAL = 3
 
 
 def run_once(f):
@@ -43,9 +45,16 @@ def get_auth():
 
 
 def generate_app_id(auth):
-    hased_app_key = auth.generateHashedAppKey()
-    app_id = auth.fetchAppId(hased_app_key)
-    return app_id
+    for i in range(MAX_TRIAL):
+        try:
+            hased_app_key = auth.generateHashedAppKey()
+            app_id = auth.fetchAppId(hased_app_key)
+        except Exception as e:
+            logging.LOGGER.info("Trial: %s, error: %s", i, e)
+            time.sleep(60)
+        return app_id
+
+    raise RuntimeError("Cannot handle")
 
 
 def jvm_shutdown():
