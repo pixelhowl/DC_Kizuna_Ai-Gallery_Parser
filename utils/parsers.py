@@ -330,8 +330,12 @@ class YoutubeCounter():
             if len(contents) >= batch_size:
                 result_ids.append(parse_contents.remote(contents, yt_regex_id))
                 contents = []
-        else:
+
+        if len(contents) > 0:
             result_ids.append(parse_contents.remote(contents, yt_regex_id))
+            contents = []
+
+        assert len(contents) == 0
 
         with tqdm(total=len(result_ids),
                   desc="Parsing youtube link") as pbar:  # 소요 시간 출력
